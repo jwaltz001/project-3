@@ -2,13 +2,11 @@
  * Dependancies and Configurations *
  *                                 *
  ***********************************/
-// console.log(process.env.PORT);
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
 require('dotenv').config();
 const app = express();
-
 const PORT = process.env.PORT || 3000;
 const db = mongoose.connection;
 
@@ -39,7 +37,7 @@ db.on('connected', () => console.log('mongo connected:'));
  *             *
  ***************/
 const userController = require("./controllers/business.js");
-app.use("/reviews", userController);
+app.use("/business", userController);
 
 const sessionController = require("./controllers/sessions-users.js");
 app.use("/sessions", sessionController);
@@ -48,4 +46,6 @@ app.use("/sessions", sessionController);
  * Listener *
  *          *
  ************/
+console.log(process.env.MONGODB_URI);
+console.log(process.env.SECRET);
 app.listen(PORT, () => console.log( 'Listening on port:', PORT));
