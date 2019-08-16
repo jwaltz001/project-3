@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Townies = require("../models/____.js");
+const Townies = require("../models/users.js");
 
 
 ///////////////////////ROUTES////////////////////////////
@@ -8,7 +8,7 @@ const Townies = require("../models/____.js");
 //Create
 router.post("/", (req,res) => {
   Townies.create(req.body, (error, createdTownie) => {
-      res.json(createdTownie)
+      res.json(createdTownie);
   });
 });
 
