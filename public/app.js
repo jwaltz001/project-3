@@ -1,10 +1,10 @@
 const app = angular.module('MyApp', []);
-app.controller('AuthController', ['$https', function($https){
+app.controller('AuthController', ['$http', function($http){
     const controller = this;
     this.createUser = function(){
       console.log("1" + this.username);
       console.log("2" + this.password);
-        $https({
+        $http({
             method:'POST',
             url:'/sessions/newuser',
             data:{
@@ -24,7 +24,7 @@ app.controller('AuthController', ['$https', function($https){
     };
 
     this.logIn = function(){
-        $https({
+        $http({
             method:'POST',
             url:'/sessions',
             data: {
@@ -45,7 +45,7 @@ app.controller('AuthController', ['$https', function($https){
     };
 
     this.logOut = function(){
-        $https({
+        $http({
             method:'DELETE',
             url:'/sessions'
         }).then(
@@ -61,7 +61,7 @@ app.controller('AuthController', ['$https', function($https){
 
     this.goApp = function(){
         console.log('getting user info');
-        $https({
+        $http({
             method:'GET',
             url:'/app'
         }).then(
@@ -73,30 +73,4 @@ app.controller('AuthController', ['$https', function($https){
             }
         );
     };
-
-	this.createTownie = () => {
-		console.log(this.name);
-		$https({
-			method:'POST',
-			url:'/business',
-			data:{
-				name: this.name,
-				city: this.city,
-				state: this.state,
-				description: this.description
-			}
-		}).then(() => {
-			this.getTownies()
-		})
-	}
-
-	this.getTownies = () => {
-		$https({
-			method:"GET",
-			url:"/business"
-		}).then((res) => {
-			this.companies = res.data;
-		});
-	}
-	this.getTownies();
     }]);
