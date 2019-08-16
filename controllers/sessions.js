@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/users.js');
-require('dotenv').config();
-
-
 const bcrypt = require('bcrypt');
 
 router.delete('/', (req, res)=>{
@@ -14,7 +11,7 @@ router.delete('/', (req, res)=>{
           status:200,
           message:'logout complete'
         });
-    })
+    });
 });
 
 router.post('/', (req, res)=>{
@@ -35,20 +32,14 @@ router.post('/', (req, res)=>{
               message:'login failed'
             });
         }
-    })
-})
+    });
+});
 
 router.post('/newuser', (req, res)=>{
-  console.log("3" + req.body.password);
     //encrypt what the user typed for password
     req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-    console.log(req.body.password);
     User.create(req.body, (err, createdUser)=>{
-      console.log(createdUser);
-        res.status(202).json({
-          status:202,
-          message:"user created"
-        });
+        res.json(createdUser);
     });
 });
 
