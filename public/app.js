@@ -76,4 +76,30 @@ app.controller('AuthController', ['$http', function($http){
             }
         );
     };
+
+	this.createTownie = () => {
+		console.log(this.name);
+		$http({
+			method:'POST',
+			url:'/business',
+			data:{
+				name: this.name,
+				city: this.city,
+				state: this.state,
+				description: this.description
+			}
+		}).then(() => {
+			this.getTownies()
+		})
+	}
+
+	this.getTownies = () => {
+		$http({
+			method:"GET",
+			url:"/business"
+		}).then((res) => {
+			this.companies = res.data;
+		});
+	}
+	this.getTownies();
     }]);
