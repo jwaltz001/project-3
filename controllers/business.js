@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const Townies = require("../models/users.js");
+const Townies = require("../models/companies.js");
 
 
 ///////////////////////ROUTES////////////////////////////
 
 //Create
 router.post("/", (req,res) => {
-	res.send("post")
   	Townies.create(req.body, (error, createdTownie) => {
     res.json(createdTownie);
   });
