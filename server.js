@@ -5,11 +5,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
-require('dotenv').config();
+require('dotenv').config()
 const app = express();
-const PORT = process.env.PORT || 3000;
-const db = mongoose.connection;
+const PORT = 3000;
 
+const db = mongoose.connection;
 /**************
  * Middleware *
  *            *
@@ -17,8 +17,7 @@ const db = mongoose.connection;
 app.use(express.static('public'));
 app.use(express.json());
 app.use(session({
-	// secret: process.env.SECRET,
-  secret: "keepitsecret",
+	secret: process.env.SECRET,
 	resave: false,
 	saveUninitialized: false
 }));
@@ -27,8 +26,8 @@ app.use(session({
  * Database *
  *          *
  ************/
-// const MONGODB_URI = process.env.MONGODB_URI;
-const mongodbURI = "mongodb+srv://jwaltz001:Stitch2019@local-business-duuiv.mongodb.net/test?retryWrites=true&w=majority";
+
+const mongodbURI = process.env.MONGODB_URI;
 mongoose.connect(mongodbURI, {useNewUrlParser: true});
 db.on('connected', () => console.log('mongo connected:'));
 
@@ -46,6 +45,4 @@ app.use("/sessions", sessionController);
  * Listener *
  *          *
  ************/
-console.log(process.env.MONGODB_URI);
-console.log(process.env.SECRET);
 app.listen(PORT, () => console.log( 'Listening on port:', PORT));
