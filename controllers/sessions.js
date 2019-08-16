@@ -11,7 +11,7 @@ router.delete('/', (req, res)=>{
           status:200,
           message:'logout complete'
         });
-    })
+    });
 });
 
 router.post('/', (req, res)=>{
@@ -32,8 +32,8 @@ router.post('/', (req, res)=>{
               message:'login failed'
             });
         }
-    })
-})
+    });
+});
 
 router.post('/newuser', (req, res)=>{
     //encrypt what the user typed for password
