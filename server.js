@@ -21,7 +21,8 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false
 }));
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 /************
  * Database *
  *          *
@@ -40,8 +41,7 @@ app.use("/business", userController);
 
 const sessionController = require("./controllers/sessions-users.js");
 app.use("/sessions", sessionController);
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+
 /************
  * Listener *
  *          *
