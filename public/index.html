@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"></script>
+        <script src="app.js" charset="utf-8"></script>
+        <link rel="stylesheet" href="main.css">
+        <title></title>
+    </head>
+    <body ng-controller="AuthController as auth">
+        <nav>
+            <!-- LOGIN -->
+            <form ng-submit="auth.logIn()">
+                <input type="text" placeholder="username">
+                <input type="password" placeholder="password">
+                <input type="submit" value="Log In">
+            </form>
+            <!-- CREATE USER -->
+            <form ng-submit="auth.createUser()">
+                <input type="text" ng-model="auth.username" placeholder="username">
+                <input type="text" ng-model="auth.password" placeholder="password">
+                <input type="text" ng-model="auth.password" placeholder="confirm password">
+                <input type="submit" value="Create User"/>
+            </form>
+            <!-- LOGOUT -->
+            <form ng-submit="auth.logOut()">
+                <input type="submit" value="Log Out">
+            </form>
+        </nav>
+        <h1>Trusty Townies</h1>
+        
+    </body>
+</html>
