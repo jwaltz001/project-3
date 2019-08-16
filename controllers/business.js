@@ -8,27 +8,30 @@ const Townies = require("../models/users.js");
 //Create
 router.post("/", (req,res) => {
 	res.send("post")
-  // Townies.create(req.body, (error, createdTownie) => {
-  //   res.json(createdTownie);
-  // });
+  	Townies.create(req.body, (error, createdTownie) => {
+    res.json(createdTownie);
+  });
 });
 
 //Index
 router.get("/", (req, res) => {
- 	res.send("get")
-  //});
+	Townies.find({}, (error, allTownies) => {
+		res.json(allTownies)
+  });
 });
 
 //Update
 router.put("/:id", (req, res) => {
-	res.send("put")
-  //});
+	Townies.findByIdAndUpdate(req.params.id, req.body, (error, updatedTownie) => {
+		res.json(updatedTownie)
+  });
 });
 
 //Delete
 router.delete("/:id", (req, res) => {
-	res.send("delete")
-  //});
+	Townies.findByIdAndRemove(req.params.id, (deletedTownie) => {
+		res.json(deletedTownie);
+  });
 });
 
 module.exports = router;
