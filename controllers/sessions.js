@@ -14,7 +14,7 @@ router.delete('/', (req, res)=>{
           status:200,
           message:'logout complete'
         });
-    })
+    });
 });
 
 router.post('/', (req, res)=>{
