@@ -5,7 +5,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
-require('dotenv').config()
+require('dotenv').config();
 const app = express();
 const PORT = 3000;
 
@@ -40,7 +40,8 @@ app.use("/business", userController);
 
 const sessionController = require("./controllers/sessions-users.js");
 app.use("/sessions", sessionController);
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 /************
  * Listener *
  *          *
