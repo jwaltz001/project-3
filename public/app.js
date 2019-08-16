@@ -22,6 +22,8 @@ app.controller('AuthController', ['$http', function($http){
     };
 
     this.logIn = function(){
+      console.log(this.username);
+      console.log(this.password);
         $http({
             method:'POST',
             url:'/sessions',

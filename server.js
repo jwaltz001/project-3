@@ -40,11 +40,11 @@ db.on('connected', () => console.log('mongo connected:'));
  * Controllers *
  *             *
  ***************/
-const userController = require("./controllers/business.js");
-app.use("/business", userController);
+const businessController = require("./controllers/business.js");
+app.use("/business", businessController);
 
-const sessionController = require("./controllers/sessions-users.js");
-app.use("/sessions-users", sessionController);
+const sessionController = require("./controllers/sessions.js");
+app.use("/sessions", sessionController);
 
 /************
  * Listener *
