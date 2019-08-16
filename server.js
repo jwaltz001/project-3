@@ -27,6 +27,22 @@ app.use(session({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+/////////////routes????//////
+app.get('/app', (req, res)=>{
+    //test if user has logged in
+    if(req.session.currentUser){
+        //if so, show the "main app"
+        res.json(req.session.currentUser);
+    } else {
+        //if not, redirect to log in page
+        res.status(401).json({
+          status:401,
+          message:'not logged in'
+        });
+    }
+});
+
 /************
  * Database *
  *          *
