@@ -24,8 +24,6 @@ app.controller('AuthController', ['$http', function($http){
     };
 
     this.logIn = function(){
-      console.log(this.username);
-      console.log(this.password);
         $http({
             method:'POST',
             url:'/sessions',
@@ -34,7 +32,6 @@ app.controller('AuthController', ['$http', function($http){
                 password:this.password
             }
         }).then(
-
             function(response){
                 console.log("thisiansf" + response);
                 controller.username = null;
@@ -76,4 +73,30 @@ app.controller('AuthController', ['$http', function($http){
             }
         );
     };
+
+	this.createTownie = () => {
+		console.log(this.name);
+		$http({
+			method:'POST',
+			url:'/business',
+			data:{
+				name: this.name,
+				city: this.city,
+				state: this.state,
+				description: this.description
+			}
+		}).then(() => {
+			this.getTownies()
+		})
+	}
+
+	this.getTownies = () => {
+		$http({
+			method:"GET",
+			url:"/business"
+		}).then((res) => {
+			this.companies = res.data;
+		});
+	}
+	this.getTownies();
     }]);
