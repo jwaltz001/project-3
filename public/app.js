@@ -73,4 +73,5 @@ app.controller('AuthController', ['$http', function($http){
             }
         );
     };
+
     }]);

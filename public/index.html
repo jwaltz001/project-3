@@ -9,13 +9,17 @@
     </head>
     <body ng-controller="AuthController as auth">
         <nav>
-
             <!-- LOGIN -->
-            <form ng-submit="auth.logIn()">
-                <input type="text" ng-model="auth.username" placeholder="username">
-                <input type="password" ng-model="auth.password" placeholder="password">
-                <input type="submit" value="Log In">
-            </form>
+            <h3 ng-click="login={'display':'block'}">LOGIN</h3>
+            <!-- login modal -->
+            <div id="loginModal" class="modal" ng-style="login">
+                <form ng-submit="auth.logIn()">
+                    <input type="text" ng-model="auth.username" placeholder="username">
+                    <input type="password" ng-model="auth.password" placeholder="password">
+                    <input type="submit" value="Log In">
+                </form>
+                <button ng-click="login={}">X</button>
+            </div>
             <!-- CREATE USER -->
             <form ng-submit="auth.createUser()">
                 <input type="text" ng-model="auth.username" placeholder="username">
@@ -30,9 +34,8 @@
         </nav>
         <h1>Trusty Townies</h1>
 
-      <div ng-if="auth.loggedInUsername">
+        <div ng-if="auth.loggedInUsername">
             <h2>Welcome, {{auth.loggedInUsername}}</h2>
-
         </div>
 
     </body>
