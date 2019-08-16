@@ -7,7 +7,6 @@ const Townies = require("../models/users.js");
 
 //Create
 router.post("/", (req,res) => {
-	res.send("post")
   	Townies.create(req.body, (error, createdTownie) => {
     res.json(createdTownie);
   });
