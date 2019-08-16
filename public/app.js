@@ -24,8 +24,6 @@ app.controller('AuthController', ['$http', function($http){
     };
 
     this.logIn = function(){
-      console.log(this.username);
-      console.log(this.password);
         $http({
             method:'POST',
             url:'/sessions',
@@ -34,7 +32,6 @@ app.controller('AuthController', ['$http', function($http){
                 password:this.password
             }
         }).then(
-
             function(response){
                 console.log("thisiansf" + response);
                 controller.username = null;
