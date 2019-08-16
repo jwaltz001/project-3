@@ -1,16 +1,19 @@
+/***********************************
+ * Dependancies and Configurations *
+ *                                 *
+ ***********************************/
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
 const session = require('express-session');
+require('dotenv').config();
+const app = express();
+const PORT = 3000;
 
-const PORT = process.env.PORT || 3000;
-
-const MONGODB_URI = process.env.MONGODB_URI;
-
-mongoose.connect(MONGOOSE_URI, {useNewUrlParser: true});
-
-db.on('connected', () => console.log('mongo connected:'));
-
+const db = mongoose.connection;
+/**************
+ * Middleware *
+ *            *
+ **************/
 app.use(express.static('public'));
 app.use(express.json());
 app.use(session({
@@ -18,11 +21,29 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false
 }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+/************
+ * Database *
+ *          *
+ ************/
 
-const userController = require("./controllers/reviews.js");
-app.use("/reviews", userController);
+const mongodbURI = process.env.MONGODB_URI;
+mongoose.connect(mongodbURI, {useNewUrlParser: true});
+db.on('connected', () => console.log('mongo connected:'));
 
-const sessionController = require("./controllers/sessions.js");
+/***************
+ * Controllers *
+ *             *
+ ***************/
+const userController = require("./controllers/business.js");
+app.use("/business", userController);
+
+const sessionController = require("./controllers/sessions-users.js");
 app.use("/sessions", sessionController);
 
+/************
+ * Listener *
+ *          *
+ ************/
 app.listen(PORT, () => console.log( 'Listening on port:', PORT));
