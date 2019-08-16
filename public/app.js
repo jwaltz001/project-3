@@ -4,7 +4,7 @@ app.controller('AuthController', ['$http', function($http){
     this.createUser = function(){
         $http({
             method:'POST',
-            url:'/users',
+            url:'/sessions/newuser',
             data:{
                 username:this.username,
                 password:this.password
