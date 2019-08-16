@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const towniesSchema = require("./companies.js").schema;
 
 const userSchema = Schema({
-    username: {type:String, required:true},
+    username: {type:String, unique:true, required:true},
     password: {type:String, required:true},
 	towniesFollowed:[towniesSchema]
 });
