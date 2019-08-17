@@ -42,7 +42,20 @@
 h3:hover {
 	color: blue;
 }
+.townie-table-row:hover{
+	background-color: rgba(30, 60, 103, .5);
+	color: white;
+}
 #map {
 	height: 500px;
 	width: 750px;
+}
+#main-townie-display{
+	background-image: url("../images/clark-young-fQxMGkYXqFU-unsplash.jpg");
+	background-position: center;
+	background-size: cover;
+	bac
+}
+#main-townie-display > * {
+	background-color: rgba(255, 255, 255, .5);
 }
