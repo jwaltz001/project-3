@@ -79,7 +79,6 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 				console.log("Username:", response.data.username);
 				controller.loggedInUsername = response.data.username;
 				console.log("loggedInUsername:", controller.loggedInUsername);
-				this.getTownies();
             },
             function(error){
                 console.log(error);
@@ -139,10 +138,11 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 		});
 	}
 	this.getTownies()
-
+	this.showmap = false;
 	this.selectCompany = (company) => {
 		this.companyAddress = company.streetAddress + ", " + company.city + ", " + company.state + " " + company.zipcode
 		console.log(this.companyAddress);
+		this.showMap = true;
 	}
 
 

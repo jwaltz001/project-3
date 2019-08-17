@@ -48,7 +48,7 @@
 	        </nav>
 
 			<h1>Trusty Townies</h1>
-	    	<div ng-show="ctrl.loggedInUsername">
+	    	<div id="main-townie-display" ng-show="ctrl.loggedInUsername">
 	  			<form ng-submit="ctrl.createTownie()">
 	  				<input type="text" ng-model="ctrl.name" placeholder="Company Name"/>
 					<input type="text" ng-model="ctrl.streetAddress" placeholder="Street Address"/>
@@ -81,21 +81,26 @@
 							<th>State</th>
 							<th>Description</th>
 						</tr>
-				        <tr ng-repeat="companies in ctrl.companies | filter : searchBox">
-				            <td ng-click="ctrl.selectCompany(companies)">{{companies.name}}</td>
+				        <tr
+							class="townie-table-row"
+							ng-repeat="companies in ctrl.companies | filter : searchBox"
+							ng-click="ctrl.selectCompany(companies)">
+				            <td>{{companies.name}}</td>
 				            <td>{{companies.city}}</td>
 				            <td>{{companies.state}}</td>
 				            <td>{{companies.description}}</td>
 				        </tr>
 				    </table>
 				</div>
-				<div id="map-search-panel">
-					<b>Your Address:</b>
-					<input type="text" id="start">
-					<input type="hidden" id="end" value="{{ctrl.companyAddress}}">
-					<button id="directions-btn" type="button" name="button">Get Directions</button>
+				<div ng-show="ctrl.showMap">
+					<div id="map-search-panel">
+						<b>Your Address:</b>
+						<input type="text" id="start">
+						<input type="hidden" id="end" value="{{ctrl.companyAddress}}">
+						<button id="directions-btn" type="button" name="button">Get Directions</button>
+					</div>
+					<div id="map"></div>
 				</div>
-				<div id="map"></div>
 			</div>
 		</div>
 	<script>
