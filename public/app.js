@@ -97,11 +97,19 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 			url:'/business',
 			data:{
 				name: this.name,
+				streetAddress: this.streetAddress,
 				city: this.city,
 				state: this.state,
+				zipcode: this.zipcode,
 				description: this.description
 			}
 		}).then(() => {
+			this.name = null;
+			this.streetAddress = null;
+			this.city = null;
+			this.state = null;
+			this.zipcode = null;
+			this.description = null;
 			this.getTownies()
 		})
 	}
@@ -115,5 +123,9 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 		});
 	}
 
+	this.selectCompany = (company) => {
+		this.companyAddress = company.streetAddress + ", " + company.city + ", " + company.state + " " + company.zipcode
+		console.log(this.companyAddress);
+	}
 	this.getTownies();
 }]);

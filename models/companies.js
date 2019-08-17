@@ -6,6 +6,7 @@ const companiesSchema = Schema({
 	streetAddress: String,
 	city: String,
     state: String,
+	zipcode: Number,
     description: String,
 	reviews:[ {authorId:String, rating:Number, comments:String, date:Date } ],
 	meta: { endorsements:Number, faves:Number }

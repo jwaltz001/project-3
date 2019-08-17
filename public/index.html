@@ -9,9 +9,8 @@
 		<link rel="stylesheet" href="/css/main.css">
 		<title>Trusty Townies</title>
     </head>
-    <body >
-	<div class="container">
-		<div ng-controller="AppController as ctrl">
+    <body>
+		<div class="container" ng-controller="AppController as ctrl">
 			<nav>
 	            <!-- LOGIN -->
 	            <h3 ng-click="login={'display':'block'}">LOGIN/SIGN UP</h3>
@@ -55,6 +54,7 @@
 					<input type="text" ng-model="ctrl.streetAddress" placeholder="Street Address"/>
 					<input type="text" ng-model="ctrl.city" placeholder="City"/>
 					<input type="text" ng-model="ctrl.state" placeholder="State"/>
+					<input type="text" ng-model="ctrl.zipcode" placeholder="Zipcode"/>
 					<input type="text" ng-model="ctrl.description" placeholder="description"/>
 					<input type="submit" value="Create New Townie"/>
 	  			</form>
@@ -63,26 +63,29 @@
 				    Search By City:<input ng-model="searchBox.city" type="text" placeholder="Enter a City">
 				    Search By State:<input ng-model="searchBox.state" type="text" placeholder="Enter a State"><br /><br />
 				    <table>
-				        <tr><th>Company Name</th><th>City</th><th>State</th><th>Description</th></tr>
+				        <tr>
+							<th>Company Name</th>
+							<th>City</th>
+							<th>State</th>
+							<th>Description</th>
+						</tr>
 				        <tr ng-repeat="companies in ctrl.companies | filter : searchBox">
-				            <td>{{companies.name}}</td>
+				            <td ng-click="ctrl.selectCompany(companies)">{{companies.name}}</td>
 				            <td>{{companies.city}}</td>
 				            <td>{{companies.state}}</td>
 				            <td>{{companies.description}}</td>
 				        </tr>
 				    </table>
 				</div>
+				<div id="map-search-panel">
+					<b>Your Address:</b>
+					<input type="text" id="start">
+					<input type="hidden" id="end" value="{{ctrl.companyAddress}}">
+					<button id="directions-btn" type="button" name="button">Get Directions</button>
+				</div>
+				<div id="map"></div>
 			</div>
 		</div>
-		<div id="map-search-panel">
-			<b>Start:</b>
-			<input type="text" id="start">
-			<b>End:</b>
-			<input type="text" id="end">
-			<button id="directions-btn" type="button" name="button">Get Directions</button>
-		</div>
-		<div id="map"></div>
-	</div>
 	<script>
 		function initMap() {
 			const directionsService = new google.maps.DirectionsService();
@@ -114,9 +117,7 @@
 				});
 		}
 	</script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew&callback=initMap" async defer>
-	</script>
-
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew&callback=initMap" async defer></script>
 	</body>
 </html>
 
