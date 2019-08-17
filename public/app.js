@@ -1,21 +1,31 @@
 const app = angular.module('MyApp', []);
-app.controller('AuthController', ['$http', function($http){
+
+app.controller('AppController', ['$http', function($http, SharedValues){
     const controller = this;
-    this.createUser = function(){
-      console.log("1" + this.username);
-      console.log("2" + this.password);
+	// this.isActiveUser = () => {
+	// 	if (loggedInUsername) {
+	// 		return true
+	// 	}else {
+	// 		return false
+	// 	}
+	// }
+	/********************************
+	 * AUTHORIZATION/NAV FUNCTIONS  *
+	 *                              *
+	 ********************************/
+	this.createUser = function(){
         $http({
             method:'POST',
             url:'/sessions/newuser',
             data:{
-                username:this.username,
-                password:this.password
+                username:this.newUsername,
+                password:this.newPassword
             }
         }).then(
             function(response){
-                controller.username = null;
-                controller.password = null;
-                console.log(response);
+                controller.newUsername = null;
+                controller.newPassword = null;
+				console.log(response);
             },
             function(error){
                 console.log(error);
@@ -36,6 +46,7 @@ app.controller('AuthController', ['$http', function($http){
                 console.log("thisiansf" + response);
                 controller.username = null;
                 controller.password = null;
+				isActiveUser = true;
                 controller.goApp();
             },
             function(error){
@@ -74,6 +85,10 @@ app.controller('AuthController', ['$http', function($http){
         );
     };
 
+	/************************************
+	 *     COMPANY/TOWNIE FUNCTIONS     *
+	 *                                  *
+	 ************************************/
 	this.createTownie = () => {
 		console.log(this.name);
 		$http({
@@ -99,6 +114,5 @@ app.controller('AuthController', ['$http', function($http){
 		});
 	}
 
-	this
 	this.getTownies();
-    }]);
+}]);

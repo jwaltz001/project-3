@@ -7,47 +7,56 @@
         <link rel="stylesheet" href="main.css">
 		<title>Trusty Townies</title>
     </head>
-    <body ng-controller="AuthController as auth">
-        <nav>
-            <!-- LOGIN -->
-            <h3 ng-click="login={'display':'block'}">LOGIN</h3>
-            <!-- login modal -->
-			<div ng-hide="auth.loggedInUsername">
-				<div id="loginModal" class="modal" ng-style="login">
-                    <div class="modal-content">
-	                <form ng-submit="auth.logIn()">
-	                    <input type="text" ng-model="auth.username" placeholder="username">
-	                    <input type="password" ng-model="auth.password" placeholder="password">
-	                    <input type="submit" value="Log In" ng-click="login={}">
-	                </form>
-	                <button ng-click="login={}" class="close">X</button>
-	            </div>
-                </div>
-			</div>
-            <!-- LOGOUT -->
-			<div ng-show="auth.loggedInUsername">
-				<form ng-submit="auth.logOut()">
-	                <input type="submit" value="Log Out">
-	            </form>
-			</div>
-            <!-- CREATE USER -->
-			<div ng-hide="auth.loggedInUsername">
-				<form ng-submit="auth.createUser()">
-	                <input type="text" ng-model="auth.username" placeholder="username">
-	                <input type="text" ng-model="auth.password" placeholder="password">
-	                <!-- <input type="text" ng-model="auth.confirmPassword" placeholder="confirm password"> -->
-	                <input type="submit" value="Create User"/>
-	            </form>
-			</div>
-        </nav>
+    <body >
+		<div ng-controller="AppController as ctrl">
+			<nav>
+	            <!-- LOGIN -->
+	            <h3 ng-click="login={'display':'block'}">LOGIN/SIGN UP</h3>
+	            <!-- login modal -->
+				<div ng-hide="ctrl.loggedInUsername">
+					<div id="loginModal" class="modal" ng-style="login">
+	                    <div class="modal-content">
+							<div class="modal-body">
+								<form ng-submit="ctrl.logIn()">
+				                    <input type="text" ng-model="ctrl.username" placeholder="username">
+				                    <input type="password" ng-model="ctrl.password" placeholder="password">
+				                    <input type="submit" value="Log In" ng-click="login={}">
+				                </form>
+								<h3>OR</h3>
+								<!-- CREATE USER -->
+								<form ng-submit="ctrl.createUser()">
+					                <input type="text" ng-model="ctrl.newUsername" placeholder="username">
+					                <input type="text" ng-model="ctrl.newPassword" placeholder="password">
+					                <!-- <input type="text" ng-model="ctrl.confirmPassword" placeholder="confirm password"> -->
+					                <input type="submit" value="Create User"/>
+					            </form>
+							</div>
+							<div class="modal-footer">
+							<button ng-click="login={}" class="close">X</button>
+							</div>
+						</div>
+	                </div>
+				</div>
+	            <!-- LOGOUT -->
+				<div ng-show="ctrl.loggedInUsername">
+					<form ng-submit="ctrl.logOut()">
+		                <input type="submit" value="Log Out">
+		            </form>
+				</div>
+
+				<div ng-hide="ctrl.loggedInUsername">
+
+				</div>
+	        </nav>
+		</div>
 
 			<h1>Trusty Townies</h1>
-	    	<div ng-if="auth.loggedInUsername">
-	  			<form ng-submit="auth.createTownie()">
-	  				<input type="text" ng-model="auth.name" placeholder="Company Name"/>
-					<input type="text" ng-model="auth.city" placeholder="City"/>
-					<input type="text" ng-model="auth.state" placeholder="State"/>
-					<input type="text" ng-model="auth.description" placeholder="description"/>
+	    	<div ng-if="ctrl.loggedInUsername">
+	  			<form ng-submit="ctrl.createTownie()">
+	  				<input type="text" ng-model="ctrl.name" placeholder="Company Name"/>
+					<input type="text" ng-model="ctrl.city" placeholder="City"/>
+					<input type="text" ng-model="ctrl.state" placeholder="State"/>
+					<input type="text" ng-model="ctrl.description" placeholder="description"/>
 					<input type="submit" value="Create New Townie"/>
 	  			</form>
 				<div>
@@ -56,7 +65,7 @@
 				    Search By State:<input ng-model="searchBox.state" type="text" placeholder="Enter a State"><br /><br />
 				    <table>
 				        <tr><th>Company Name</th><th>City</th><th>State</th><th>Description</th></tr>
-				        <tr ng-repeat="companies in auth.companies | filter : searchBox">
+				        <tr ng-repeat="companies in ctrl.companies | filter : searchBox">
 				            <td>{{companies.name}}</td>
 				            <td>{{companies.city}}</td>
 				            <td>{{companies.state}}</td>
@@ -65,7 +74,6 @@
 				    </table>
 				</div>
 			</div>
-		</div>
 
 		<div id="map-search-panel">
 			<b>Start:</b>
