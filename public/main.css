@@ -1,8 +1,12 @@
-
+#map {
+	height: 500px;
+	width: 750px;
+	margin-left: 250px;
+}
 .modal {
-    display: none;
+	display: none;
 }
 
 h3:hover {
-    color: blue;
+	color: blue;
 }
