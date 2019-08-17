@@ -73,8 +73,6 @@ app.controller('AuthController', ['$http', function($http){
             }
         );
     };
-<<<<<<< HEAD
-=======
 
 	this.createTownie = () => {
 		console.log(this.name);
@@ -102,5 +100,4 @@ app.controller('AuthController', ['$http', function($http){
 	}
 
 	this.getTownies();
->>>>>>> 64272e1b69f7bd9a5fda2b5ee71a29de7ba3a750
     }]);

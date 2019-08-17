@@ -15,13 +15,15 @@
             <!-- login modal -->
 			<div ng-hide="auth.loggedInUsername">
 				<div id="loginModal" class="modal" ng-style="login">
+                    <div class="modal-content">
 	                <form ng-submit="auth.logIn()">
 	                    <input type="text" ng-model="auth.username" placeholder="username">
 	                    <input type="password" ng-model="auth.password" placeholder="password">
-	                    <input type="submit" value="Log In">
+	                    <input type="submit" value="Log In" ng-click="login={}">
 	                </form>
-	                <button ng-click="login={}">X</button>
+	                <button ng-click="login={}" class="close">X</button>
 	            </div>
+                </div>
 			</div>
             <!-- LOGOUT -->
 			<div ng-show="auth.loggedInUsername">
