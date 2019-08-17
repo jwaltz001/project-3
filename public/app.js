@@ -99,5 +99,6 @@ app.controller('AuthController', ['$http', function($http){
 		});
 	}
 
+	this
 	this.getTownies();
     }]);
