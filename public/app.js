@@ -120,12 +120,31 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 			url:"/business"
 		}).then((res) => {
 			this.companies = res.data;
+			console.log(this.companies);
+			this.allStatesList = () => {
+				const statesList = []
+				for (let i = 0; i < this.companies.length; i++) {
+					statesList.push(this.companies[i].state);
+				}
+				const sortedStatesList = statesList.sort()
+				const filteredStatesList = []
+				for (var i = 0; i < sortedStatesList.length; i++) {
+					if (sortedStatesList[i] != sortedStatesList[i+1]) {
+						filteredStatesList.push(sortedStatesList[i])
+					}
+				}
+				return filteredStatesList
+			}
 		});
 	}
-
+	this.getTownies()
+	this.showmap = false;
 	this.selectCompany = (company) => {
 		this.companyAddress = company.streetAddress + ", " + company.city + ", " + company.state + " " + company.zipcode
 		console.log(this.companyAddress);
+		this.showMap = true;
 	}
-	this.getTownies();
+
+
+
 }]);
