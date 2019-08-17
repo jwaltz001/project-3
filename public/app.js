@@ -43,10 +43,9 @@ app.controller('AppController', ['$http', function($http, SharedValues){
             }
         }).then(
             function(response){
-                console.log("thisiansf" + response);
+                console.log("Log In Response:",response.data);
                 controller.username = null;
                 controller.password = null;
-				isActiveUser = true;
                 controller.goApp();
             },
             function(error){
@@ -77,7 +76,9 @@ app.controller('AppController', ['$http', function($http, SharedValues){
             url:'/app'
         }).then(
             function(response){
-                controller.loggedInUsername = response.data.username;
+				console.log("Username:", response.data.username);
+				controller.loggedInUsername = response.data.username;
+				console.log("loggedInUsername:", controller.loggedInUsername);
             },
             function(error){
                 console.log(error);

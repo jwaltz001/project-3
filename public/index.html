@@ -4,10 +4,13 @@
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"></script>
 		<script src="app.js" charset="utf-8"></script>
-        <link rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href="/css/normalize.css">
+		<link rel="stylesheet" href="/css/skeleton.css">
+		<link rel="stylesheet" href="/css/main.css">
 		<title>Trusty Townies</title>
     </head>
     <body >
+	<div class="container">
 		<div ng-controller="AppController as ctrl">
 			<nav>
 	            <!-- LOGIN -->
@@ -22,7 +25,7 @@
 				                    <input type="password" ng-model="ctrl.password" placeholder="password">
 				                    <input type="submit" value="Log In" ng-click="login={}">
 				                </form>
-								<h3>OR</h3>
+								<h2>OR</h2>
 								<!-- CREATE USER -->
 								<form ng-submit="ctrl.createUser()">
 					                <input type="text" ng-model="ctrl.newUsername" placeholder="username">
@@ -43,17 +46,13 @@
 		                <input type="submit" value="Log Out">
 		            </form>
 				</div>
-
-				<div ng-hide="ctrl.loggedInUsername">
-
-				</div>
 	        </nav>
-		</div>
 
 			<h1>Trusty Townies</h1>
-	    	<div ng-if="ctrl.loggedInUsername">
+	    	<div ng-show="ctrl.loggedInUsername">
 	  			<form ng-submit="ctrl.createTownie()">
 	  				<input type="text" ng-model="ctrl.name" placeholder="Company Name"/>
+					<input type="text" ng-model="ctrl.streetAddress" placeholder="Street Address"/>
 					<input type="text" ng-model="ctrl.city" placeholder="City"/>
 					<input type="text" ng-model="ctrl.state" placeholder="State"/>
 					<input type="text" ng-model="ctrl.description" placeholder="description"/>
@@ -74,7 +73,7 @@
 				    </table>
 				</div>
 			</div>
-
+		</div>
 		<div id="map-search-panel">
 			<b>Start:</b>
 			<input type="text" id="start">
@@ -83,7 +82,7 @@
 			<button id="directions-btn" type="button" name="button">Get Directions</button>
 		</div>
 		<div id="map"></div>
-
+	</div>
 	<script>
 		function initMap() {
 			const directionsService = new google.maps.DirectionsService();
@@ -117,7 +116,8 @@
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew&callback=initMap" async defer>
 	</script>
-		  </body>
+
+	</body>
 </html>
 
 <!-- <div id="floating-panel">
