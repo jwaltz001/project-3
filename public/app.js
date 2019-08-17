@@ -1,21 +1,31 @@
 const app = angular.module('MyApp', []);
-app.controller('AuthController', ['$http', function($http){
+
+app.controller('AppController', ['$http', function($http, SharedValues){
     const controller = this;
-    this.createUser = function(){
-      console.log("1" + this.username);
-      console.log("2" + this.password);
+	// this.isActiveUser = () => {
+	// 	if (loggedInUsername) {
+	// 		return true
+	// 	}else {
+	// 		return false
+	// 	}
+	// }
+	/********************************
+	 * AUTHORIZATION/NAV FUNCTIONS  *
+	 *                              *
+	 ********************************/
+	this.createUser = function(){
         $http({
             method:'POST',
             url:'/sessions/newuser',
             data:{
-                username:this.username,
-                password:this.password
+                username:this.newUsername,
+                password:this.newPassword
             }
         }).then(
             function(response){
-                controller.username = null;
-                controller.password = null;
-                console.log(response);
+                controller.newUsername = null;
+                controller.newPassword = null;
+				console.log(response);
             },
             function(error){
                 console.log(error);
@@ -33,7 +43,7 @@ app.controller('AuthController', ['$http', function($http){
             }
         }).then(
             function(response){
-                console.log("thisiansf" + response);
+                console.log("Log In Response:",response.data);
                 controller.username = null;
                 controller.password = null;
                 controller.goApp();
@@ -66,7 +76,9 @@ app.controller('AuthController', ['$http', function($http){
             url:'/app'
         }).then(
             function(response){
-                controller.loggedInUsername = response.data.username;
+				console.log("Username:", response.data.username);
+				controller.loggedInUsername = response.data.username;
+				console.log("loggedInUsername:", controller.loggedInUsername);
             },
             function(error){
                 console.log(error);
@@ -74,6 +86,10 @@ app.controller('AuthController', ['$http', function($http){
         );
     };
 
+	/************************************
+	 *     COMPANY/TOWNIE FUNCTIONS     *
+	 *                                  *
+	 ************************************/
 	this.createTownie = () => {
 		console.log(this.name);
 		$http({
@@ -81,11 +97,19 @@ app.controller('AuthController', ['$http', function($http){
 			url:'/business',
 			data:{
 				name: this.name,
+				streetAddress: this.streetAddress,
 				city: this.city,
 				state: this.state,
+				zipcode: this.zipcode,
 				description: this.description
 			}
 		}).then(() => {
+			this.name = null;
+			this.streetAddress = null;
+			this.city = null;
+			this.state = null;
+			this.zipcode = null;
+			this.description = null;
 			this.getTownies()
 		})
 	}
@@ -99,5 +123,9 @@ app.controller('AuthController', ['$http', function($http){
 		});
 	}
 
+	this.selectCompany = (company) => {
+		this.companyAddress = company.streetAddress + ", " + company.city + ", " + company.state + " " + company.zipcode
+		console.log(this.companyAddress);
+	}
 	this.getTownies();
-    }]);
+}]);

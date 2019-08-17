@@ -1,5 +1,3 @@
-
-
 /***********************************
  * Dependancies and Configurations *
  *                                 *

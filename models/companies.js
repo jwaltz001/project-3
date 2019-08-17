@@ -3,8 +3,10 @@ const Schema = mongoose.Schema;
 
 const companiesSchema = Schema({
     name: {type:String, required:true},
-    city: String,
+	streetAddress: String,
+	city: String,
     state: String,
+	zipcode: Number,
     description: String,
 	reviews:[ {authorId:String, rating:Number, comments:String, date:Date } ],
 	meta: { endorsements:Number, faves:Number }
