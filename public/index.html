@@ -61,7 +61,19 @@
 				<div>
 				    Search Company Name:<input ng-model="searchBox.name" type="text" placeholder="Enter a Name">
 				    Search By City:<input ng-model="searchBox.city" type="text" placeholder="Enter a City">
-				    Search By State:<input ng-model="searchBox.state" type="text" placeholder="Enter a State"><br /><br />
+					Search By State:
+					<select
+						ng-options= "state for state in ctrl.allStatesList()"
+						ng-model="searchBox.state">
+						<!-- <option value=""> Choose State </option> -->
+					</select>
+					<!--
+					<select
+						ng-options= "company as company.state for company in ctrl.companies"
+						ng-model="searchBox.state">
+						<option value=""> Choose State </option>
+					</select>
+					Search By State:<input ng-model="searchBox.state" type="text" placeholder="Enter a State"><br /><br /> -->
 				    <table>
 				        <tr>
 							<th>Company Name</th>
@@ -120,36 +132,3 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew&callback=initMap" async defer></script>
 	</body>
 </html>
-
-<!-- <div id="floating-panel">
-	<b>Start: </b>
-	<select id="start">
-		<option value="chicago, il">Chicago</option>
-		<option value="st louis, mo">St Louis</option>
-		<option value="joplin, mo">Joplin, MO</option>
-		<option value="oklahoma city, ok">Oklahoma City</option>
-		<option value="amarillo, tx">Amarillo</option>
-		<option value="gallup, nm">Gallup, NM</option>
-		<option value="flagstaff, az">Flagstaff, AZ</option>
-		<option value="winona, az">Winona</option>
-		<option value="kingman, az">Kingman</option>
-		<option value="barstow, ca">Barstow</option>
-		<option value="san bernardino, ca">San Bernardino</option>
-		<option value="los angeles, ca">Los Angeles</option>
-	</select>
-	<b>End: </b>
-	<select id="end">
-		<option value="chicago, il">Chicago</option>
-		<option value="st louis, mo">St Louis</option>
-		<option value="joplin, mo">Joplin, MO</option>
-		<option value="oklahoma city, ok">Oklahoma City</option>
-		<option value="amarillo, tx">Amarillo</option>
-		<option value="gallup, nm">Gallup, NM</option>
-		<option value="flagstaff, az">Flagstaff, AZ</option>
-		<option value="winona, az">Winona</option>
-		<option value="kingman, az">Kingman</option>
-		<option value="barstow, ca">Barstow</option>
-		<option value="san bernardino, ca">San Bernardino</option>
-		<option value="los angeles, ca">Los Angeles</option>
-	</select>
-</div> -->
