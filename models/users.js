@@ -4,7 +4,7 @@ const towniesSchema = require("./companies.js").schema;
 
 const userSchema = Schema({
     username: {type:String},
-    password: {type:String}
+    password: {type:String},
 	towniesFollowed:[towniesSchema]
 });
 
