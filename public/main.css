@@ -22,7 +22,14 @@
 	border: 1px solid grey;
 	width: 75%;
 }
-
+.modal-body{
+	display: flex;
+	justify-content: space-around;
+}
+.modal-body > form {
+	display: flex;
+	flex-direction: column;
+}
 h3:hover {
 	color: blue;
 }
