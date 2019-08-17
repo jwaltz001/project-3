@@ -7,38 +7,39 @@
         <link rel="stylesheet" href="main.css">
 		<title>Trusty Townies</title>
     </head>
-    <body>
-		<div ng-controller="AuthController as auth">
-			<nav>
-	            <!-- LOGIN -->
-	            <h3 ng-click="login={'display':'block'}">LOGIN</h3>
-	            <!-- login modal -->
-				<div ng-hide="auth.loggedInUsername">
-					<div id="loginModal" class="modal" ng-style="login">
-		                <form ng-submit="auth.logIn()">
-		                    <input type="text" ng-model="auth.username" placeholder="username">
-		                    <input type="password" ng-model="auth.password" placeholder="password">
-		                    <input type="submit" value="Log In">
-		                </form>
-		                <button ng-click="login={}">X</button>
-		            </div>
-				</div>
-	            <!-- LOGOUT -->
-				<div ng-show="auth.loggedInUsername">
-					<form ng-submit="auth.logOut()">
-		                <input type="submit" value="Log Out">
-		            </form>
-				</div>
-	            <!-- CREATE USER -->
-				<div ng-hide="auth.loggedInUsername">
-					<form ng-submit="auth.createUser()">
-		                <input type="text" ng-model="auth.username" placeholder="username">
-		                <input type="text" ng-model="auth.password" placeholder="password">
-		                <!-- <input type="text" ng-model="auth.confirmPassword" placeholder="confirm password"> -->
-		                <input type="submit" value="Create User"/>
-		            </form>
-				</div>
-	        </nav>
+    <body ng-controller="AuthController as auth">
+        <nav>
+            <!-- LOGIN -->
+            <h3 ng-click="login={'display':'block'}">LOGIN</h3>
+            <!-- login modal -->
+			<div ng-hide="auth.loggedInUsername">
+				<div id="loginModal" class="modal" ng-style="login">
+                    <div class="modal-content">
+	                <form ng-submit="auth.logIn()">
+	                    <input type="text" ng-model="auth.username" placeholder="username">
+	                    <input type="password" ng-model="auth.password" placeholder="password">
+	                    <input type="submit" value="Log In" ng-click="login={}">
+	                </form>
+	                <button ng-click="login={}" class="close">X</button>
+	            </div>
+                </div>
+			</div>
+            <!-- LOGOUT -->
+			<div ng-show="auth.loggedInUsername">
+				<form ng-submit="auth.logOut()">
+	                <input type="submit" value="Log Out">
+	            </form>
+			</div>
+            <!-- CREATE USER -->
+			<div ng-hide="auth.loggedInUsername">
+				<form ng-submit="auth.createUser()">
+	                <input type="text" ng-model="auth.username" placeholder="username">
+	                <input type="text" ng-model="auth.password" placeholder="password">
+	                <!-- <input type="text" ng-model="auth.confirmPassword" placeholder="confirm password"> -->
+	                <input type="submit" value="Create User"/>
+	            </form>
+			</div>
+        </nav>
 
 			<h1>Trusty Townies</h1>
 	    	<div ng-if="auth.loggedInUsername">
