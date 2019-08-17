@@ -43,10 +43,9 @@ app.controller('AppController', ['$http', function($http, SharedValues){
             }
         }).then(
             function(response){
-                console.log("thisiansf" + response);
+                console.log("Log In Response:",response.data);
                 controller.username = null;
                 controller.password = null;
-				isActiveUser = true;
                 controller.goApp();
             },
             function(error){
@@ -77,7 +76,9 @@ app.controller('AppController', ['$http', function($http, SharedValues){
             url:'/app'
         }).then(
             function(response){
-                controller.loggedInUsername = response.data.username;
+				console.log("Username:", response.data.username);
+				controller.loggedInUsername = response.data.username;
+				console.log("loggedInUsername:", controller.loggedInUsername);
             },
             function(error){
                 console.log(error);
@@ -96,11 +97,19 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 			url:'/business',
 			data:{
 				name: this.name,
+				streetAddress: this.streetAddress,
 				city: this.city,
 				state: this.state,
+				zipcode: this.zipcode,
 				description: this.description
 			}
 		}).then(() => {
+			this.name = null;
+			this.streetAddress = null;
+			this.city = null;
+			this.state = null;
+			this.zipcode = null;
+			this.description = null;
 			this.getTownies()
 		})
 	}
@@ -114,5 +123,9 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 		});
 	}
 
+	this.selectCompany = (company) => {
+		this.companyAddress = company.streetAddress + ", " + company.city + ", " + company.state + " " + company.zipcode
+		console.log(this.companyAddress);
+	}
 	this.getTownies();
 }]);

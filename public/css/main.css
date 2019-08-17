@@ -1,8 +1,3 @@
-#map {
-	height: 500px;
-	width: 750px;
-	margin-left: 250px;
-}
 .modal {
 	display: none;
 	position: fixed;
@@ -14,7 +9,6 @@
 	overflow: auto;
 	background-color: rgba(0,0,0,0.4);
 }
-
 .modal-content {
 	background-color: white;
 	margin: 15% auto;
@@ -25,11 +19,30 @@
 .modal-body{
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
 }
 .modal-body > form {
 	display: flex;
 	flex-direction: column;
+	width: 35%;
+}
+.modal-body > h2 {
+	width: 20%;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	border-right: .1em solid black;
+	border-left: .1em solid black;
+}
+.modal-footer {
+	display:flex;
+	flex-direction: row-reverse;
+	padding: 1em 1em 0 1em;
 }
 h3:hover {
 	color: blue;
+}
+#map {
+	height: 500px;
+	width: 750px;
 }
