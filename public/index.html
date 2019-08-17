@@ -3,37 +3,44 @@
     <head>
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"></script>
-        <script src="app.js" charset="utf-8"></script>
+
+		<script src="app.js" charset="utf-8"></script>
         <link rel="stylesheet" href="main.css">
-        <title></title>
+		<title>Trusty Townies</title>
     </head>
     <body ng-controller="AuthController as auth">
         <nav>
             <!-- LOGIN -->
             <h3 ng-click="login={'display':'block'}">LOGIN</h3>
             <!-- login modal -->
-            <div id="loginModal" class="modal" ng-style="login">
-                <form ng-submit="auth.logIn()">
-                    <input type="text" ng-model="auth.username" placeholder="username">
-                    <input type="password" ng-model="auth.password" placeholder="password">
-                    <input type="submit" value="Log In">
-                </form>
-                <button ng-click="login={}">X</button>
-            </div>
+			<div ng-hide="auth.loggedInUsername">
+				<div id="loginModal" class="modal" ng-style="login">
+	                <form ng-submit="auth.logIn()">
+	                    <input type="text" ng-model="auth.username" placeholder="username">
+	                    <input type="password" ng-model="auth.password" placeholder="password">
+	                    <input type="submit" value="Log In">
+	                </form>
+	                <button ng-click="login={}">X</button>
+	            </div>
+			</div>
             <!-- LOGOUT -->
-            <form ng-submit="auth.logOut()">
-                <input type="submit" value="Log Out">
-            </form>
+			<div ng-show="auth.loggedInUsername">
+				<form ng-submit="auth.logOut()">
+	                <input type="submit" value="Log Out">
+	            </form>
+			</div>
             <!-- CREATE USER -->
-            <form ng-submit="auth.createUser()">
-                <input type="text" ng-model="auth.username" placeholder="username">
-                <input type="text" ng-model="auth.password" placeholder="password">
-                <!-- <input type="text" ng-model="auth.confirmPassword" placeholder="confirm password"> -->
-                <input type="submit" value="Create User"/>
-            </form>
+			<div ng-hide="auth.loggedInUsername">
+				<form ng-submit="auth.createUser()">
+	                <input type="text" ng-model="auth.username" placeholder="username">
+	                <input type="text" ng-model="auth.password" placeholder="password">
+	                <!-- <input type="text" ng-model="auth.confirmPassword" placeholder="confirm password"> -->
+	                <input type="submit" value="Create User"/>
+	            </form>
+			</div>
         </nav>
-        <h1>Trusty Townies</h1>
 
+		<h1>Trusty Townies</h1>
     	<div ng-if="auth.loggedInUsername">
   			<form ng-submit="auth.createTownie()">
   				<input type="text" ng-model="auth.name" placeholder="Company Name"/>
@@ -42,17 +49,32 @@
 				<input type="text" ng-model="auth.description" placeholder="description"/>
 				<input type="submit" value="Create New Townie"/>
   			</form>
-      <div>
-			<label for="Search By">
-            <input type='text' placeholder='Search Company Name' ng-model='searchBox'>
-            <input type='text' placeholder='Search By City' ng-model='searchBox'>
-            <input type='text' placeholder='Search By State' ng-model='searchBox'>
-      </label>
-        <ul>
-          <li ng-repeat="companies in auth.companies| filter: searchBox">{{companies.name}} :<span> {{companies.city}} :<span> {{companies.state}}</li>
+			<div>
+			       Search Company Name:<input ng-model="searchBox.name" type="text" placeholder="Enter a Name">
+			       Search By City:<input ng-model="searchBox.city" type="text" placeholder="Enter a City">
+			       Search By State:<input ng-model="searchBox.state" type="text" placeholder="Enter a State"><br /><br />
+			       <table>
+			         <tr><th>Company Name</th><th>City</th><th>State</th><th>Description</th></tr>
+			         <tr ng-repeat="companies in auth.companies | filter : searchBox">
+			           <td>{{companies.name}}</td>
+			           <td>{{companies.city}}</td>
+			           <td>{{companies.state}}</td>
+			           <td>{{companies.description}}</td>
+			         </tr>
+			       </table>
+			</div>
+		</div>
+		  <div id="map"></div>
+		  <script>
+			var map;
+			function initMap() {
+			  map = new google.maps.Map(document.getElementById('map'), {
+				center: {lat: -34.397, lng: 150.644},
+				zoom: 8
+			  });
+			}
+		  </script>
+		  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew&callback=initMap" async defer></script>
 
-
-        </ul>
-      </div>
-    </body>
+		    </body>
 </html>
