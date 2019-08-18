@@ -46,10 +46,7 @@ h3:hover {
 	background-color: rgba(30, 60, 103, .5);
 	color: white;
 }
-#map {
-	height: 500px;
-	width: 750px;
-}
+
 #main-townie-display{
 	background-image: url("../images/clark-young-fQxMGkYXqFU-unsplash.jpg");
 	background-position: center;
@@ -58,4 +55,37 @@ h3:hover {
 }
 #main-townie-display > * {
 	background-color: rgba(255, 255, 255, .5);
+}
+
+#map-search-panel{
+	background-color: rgba(255, 255, 255, .5);
+}
+
+#map-directions-display{
+	display: flex;
+}
+#map {
+	height: 500px;
+	width: 750px;
+}
+#right-panel {
+	font-family: 'Roboto','sans-serif';
+	line-height: 30px;
+	padding-left: 10px;
+	height: 100%;
+	width: 390px;
+	overflow: auto;
+	background-color: rgba(255, 255, 255, .5);
+}
+
+#right-panel select, #right-panel input {
+	font-size: 15px;
+}
+
+#right-panel select {
+	width: 100%;
+}
+
+#right-panel i {
+	font-size: 12px;
 }

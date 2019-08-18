@@ -194,5 +194,5 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 	}
 
 	this.getTownies();
- 	console.log("Edit enabled on page load:", this.isEditEnabled);
+ 	//console.log("Edit enabled on page load:", this.isEditEnabled);
 }]);

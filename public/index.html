@@ -77,7 +77,7 @@
 						<option value=""> Choose State </option>
 					</select>
 					Search By State:<input ng-model="searchBox.state" type="text" placeholder="Enter a State"><br /><br /> -->
-				    <table>
+				    <table id="all-townies-table">
 				        <tr>
 							<th>Company Name</th>
 							<th>City</th>
@@ -97,6 +97,7 @@
             </div>
 				</div>
 				<div ng-show="ctrl.isCompanySelected">
+					<h4>{{ctrl.companyToShow.name}}</h4>
 					<form ng-submit="ctrl.editTownie(ctrl.companyToShow)">
 		  				<input type="text" ng-model="ctrl.editedName" placeholder="Company Name" value="{{ctrl.companyToShow.name}}"/>
 						<input type="text" ng-model="ctrl.editedStreetAddress" placeholder="Street Address" value="{{ctrl.companyToShow.streetAddress}}"/>
@@ -107,13 +108,16 @@
 						<input type="submit" value="Save Changes" ng-show="ctrl.isEditEnabled"/>
 		  			</form>
             		<button ng-hide="ctrl.isEditEnabled" ng-click="ctrl.toggleEditTownieForm()">Edit</button>
-					<div id="map-search-panel">
-						<b>Your Address:</b>
-						<input type="text" id="start">
-						<input type="hidden" id="end" value="{{ctrl.selectedCompanyAddress}}">
-						<button id="directions-btn" type="button" name="button">Get Directions</button>
+						<div id="map-search-panel">
+							<b>Your Address:</b>
+							<input type="text" id="start" value="{{ctrl.companyToShow.city}}">
+							<input type="hidden" id="end" value="{{ctrl.selectedCompanyAddress}}">
+							<button id="directions-btn" type="button" name="button">Get Directions</button>
+						</div>
+					<div id="map-directions-display">
+						<div id="map"></div>
+						<div id="right-panel"></div>
 					</div>
-					<div id="map"></div>
           <form>
             <button id="back-btn" type="button" ng-click="ctrl.back()">Back to List</button>
               <div ng-hide="isCompanySelected"></div>
@@ -123,21 +127,26 @@
 				</div>
 			</div>
 		</div>
+<!-- Used Tutorial, esp. on https://developers.google.com/maps/documentation/javascript/examples/directions-panel -->
 	<script>
 		function initMap() {
-			const directionsService = new google.maps.DirectionsService();
-			const directionsRenderer = new google.maps.DirectionsRenderer();
+			const directionsService = new google.maps.DirectionsService;
+			const directionsRenderer = new google.maps.DirectionsRenderer;
 			const map = new google.maps.Map(document.getElementById('map'), {
 				zoom: 7,
 				center: {lat: 41.85, lng: -87.65}
 			});
 			directionsRenderer.setMap(map);
+			directionsRenderer.setPanel(document.getElementById('right-panel'));
 
 			const onChangeHandler = function() {
 				calculateAndDisplayRoute(directionsService, directionsRenderer);
 			};
+			document.getElementById("directions-btn").removeEventListener("click", initMap);
 			document.getElementById('directions-btn').addEventListener('click', onChangeHandler);
+			onChangeHandler();
 			}
+
 		function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 			directionsService.route(
 				{
@@ -153,7 +162,8 @@
 					}
 				});
 		}
+		document.getElementById('directions-btn').addEventListener('click', initMap);
 	</script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew&callback=initMap" async defer></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew" async defer></script>
 	</body>
 </html>
