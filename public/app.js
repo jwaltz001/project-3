@@ -90,6 +90,10 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 	 *     COMPANY/TOWNIE FUNCTIONS     *
 	 *                                  *
 	 ************************************/
+	this.isCompanySelected = false;
+	this.searchForNewCompany = () => {
+		console.log("works");
+	}
 	this.createTownie = () => {
 		console.log(this.name);
 		$http({
@@ -114,10 +118,47 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 		})
 	}
 
+	this.showTownie = (townie) => {
+		console.log("Townie to show 1 (click):", townie);
+		$http({
+			method: 'GET',
+			url: '/business/' + townie._id
+		}).then((res) => {
+			console.log("Townie to show 3 (res):", res);
+			this.companyToShow = res.data
+			this.selectedCompanyAddress = res.data.streetAddress + ", " + res.data.city + ", " + res.data.state + " " + res.data.zipcode
+			console.log(this.companyAddress);
+			this.isCompanySelected = true;
+			})
+	}
+
+	this.editTownie = (townieId) => {
+		$http({
+			method:'PUT',
+			url:'/business/'+townieId,
+			data:{
+				name: this.name,
+				streetAddress: this.streetAddress,
+				city: this.city,
+				state: this.state,
+				zipcode: this.zipcode,
+				description: this.description
+			}
+		}).then(() => {
+			this.name = null;
+			this.streetAddress = null;
+			this.city = null;
+			this.state = null;
+			this.zipcode = null;
+			this.description = null;
+			this.getTownies()
+		})
+	}
+
 	this.getTownies = () => {
 		$http({
-			method:"GET",
-			url:"/business"
+			method:'GET',
+			url:'/business'
 		}).then((res) => {
 			this.companies = res.data;
 			console.log(this.companies);
@@ -137,21 +178,7 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 			}
 		});
 	}
-	this.getTownies()
-	this.showmap = false;
-	this.selectCompany = (company) => {
-		this.companyAddress = company.streetAddress + ", " + company.city + ", " + company.state + " " + company.zipcode
-		console.log(this.companyAddress);
-		this.showMap = true;
-	}
 
-
+	this.getTownies();
 
 }]);
-/**
- * <h4>Know a Townie you Trust?<br>
-	 <span ng-click="showNewTownieForm">Add them here:</span>
-	 </h4>
-
-	 <input type="submit" value="Create New Townie"/>
- */
