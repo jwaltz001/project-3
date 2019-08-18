@@ -22,7 +22,10 @@ router.post('/', (req, res)=>{
             req.session.currentUser = foundUser;
             res.status(201).json({
               status:201,
-              message:'session created'
+              message:'session created',
+			  data:{
+				  sessionUser: req.session.currentUser
+			  }
             });
         } else {
             //if the passwords don't match, tell the user
