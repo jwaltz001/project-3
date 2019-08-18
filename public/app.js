@@ -148,3 +148,10 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 
 
 }]);
+/**
+ * <h4>Know a Townie you Trust?<br>
+	 <span ng-click="showNewTownieForm">Add them here:</span>
+	 </h4>
+
+	 <input type="submit" value="Create New Townie"/>
+ */
