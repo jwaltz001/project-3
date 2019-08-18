@@ -12,10 +12,10 @@
     <body>
 		<div class="container" ng-controller="AppController as ctrl">
 			<nav>
+        	<div ng-hide="ctrl.loggedInUsername">
 	            <!-- LOGIN -->
 	            <h3 ng-click="login={'display':'block'}">LOGIN/SIGN UP</h3>
 	            <!-- login modal -->
-				<div ng-hide="ctrl.loggedInUsername">
 					<div id="loginModal" class="modal" ng-style="login">
 	                    <div class="modal-content">
 							<div class="modal-body">
@@ -46,16 +46,18 @@
 		            </form>
 				</div>
 	        </nav>
-
 			<h1>Trusty Townies</h1>
 	    	<div id="main-townie-display" ng-show="ctrl.loggedInUsername">
-	  			<form ng-submit="ctrl.createTownie()">
+          <div ng-hide="ctrl.isCompanySelected">
+				<h4>Know a Townie you Trust?<br>
+			   	 <span>Add them here:</span>
+			   	 </h4>
+				<form ng-submit="ctrl.createTownie()">
 	  				<input type="text" ng-model="ctrl.name" placeholder="Company Name"/>
 					<input type="text" ng-model="ctrl.streetAddress" placeholder="Street Address"/>
 					<input type="text" ng-model="ctrl.city" placeholder="City"/>
 					<input type="text" ng-model="ctrl.state" placeholder="State"/>
 					<input type="text" ng-model="ctrl.zipcode" placeholder="Zipcode"/>
-					<!-- <input type="text" ng-model="ctrl.description" placeholder="description"/> -->
 					<textarea ng-model="ctrl.description" placeholder="description"></textarea>
 					<input type="submit" value="Create New Townie"/>
 	  			</form>
@@ -66,7 +68,7 @@
 					<select
 						ng-options= "state for state in ctrl.allStatesList()"
 						ng-model="searchBox.state">
-						<!-- <option value=""> Choose State </option> -->
+						<option value=""> Choose State </option>
 					</select>
 					<!--
 					<select
@@ -85,22 +87,39 @@
 				        <tr
 							class="townie-table-row"
 							ng-repeat="companies in ctrl.companies | filter : searchBox"
-							ng-click="ctrl.selectCompany(companies)">
+							ng-click="ctrl.showTownie(companies)">
 				            <td>{{companies.name}}</td>
 				            <td>{{companies.city}}</td>
 				            <td>{{companies.state}}</td>
 				            <td>{{companies.description}}</td>
 				        </tr>
 				    </table>
+            </div>
 				</div>
-				<div ng-show="ctrl.showMap">
+				<div ng-show="ctrl.isCompanySelected">
+					<form ng-submit="ctrl.editTownie(ctrl.companyToShow)">
+		  				<input type="text" ng-model="ctrl.editedName" placeholder="Company Name" value="{{ctrl.companyToShow.name}}"/>
+						<input type="text" ng-model="ctrl.editedStreetAddress" placeholder="Street Address" value="{{ctrl.companyToShow.streetAddress}}"/>
+						<input type="text" ng-model="ctrl.editedCity" placeholder="City" value="{{ctrl.companyToShow.city}}"/>
+						<input type="text" ng-model="ctrl.editedState" placeholder="State" value="{{ctrl.companyToShow.state}}"/>
+						<input type="text" ng-model="ctrl.editedZipcode" placeholder="Zipcode" value="{{ctrl.companyToShow.zipcode}}"/>
+						<textarea ng-model="ctrl.editedDescription" placeholder="description" value="{{ctrl.companyToShow.description}}"></textarea>
+						<input type="submit" value="Save Changes" ng-show="ctrl.isEditEnabled"/>
+		  			</form>
+            		<button ng-hide="ctrl.isEditEnabled" ng-click="ctrl.toggleEditTownieForm()">Edit</button>
 					<div id="map-search-panel">
 						<b>Your Address:</b>
 						<input type="text" id="start">
-						<input type="hidden" id="end" value="{{ctrl.companyAddress}}">
+						<input type="hidden" id="end" value="{{ctrl.selectedCompanyAddress}}">
 						<button id="directions-btn" type="button" name="button">Get Directions</button>
 					</div>
 					<div id="map"></div>
+          <form>
+            <button id="back-btn" type="button" ng-click="ctrl.back()">Back to List</button>
+              <div ng-hide="isCompanySelected"></div>
+
+              </div>
+          </form>
 				</div>
 			</div>
 		</div>

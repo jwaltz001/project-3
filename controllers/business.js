@@ -19,8 +19,18 @@ router.get("/", (req, res) => {
   });
 });
 
+
+///show
+router.get("/:id", (req, res) => {
+	console.log("Townie to show 2 (get route id):", req.params.id);
+  Townies.findById(req.params.id, (error, showtownie) => {
+    res.json(showtownie)
+  })
+})
+
 //Update
 router.put("/:id", (req, res) => {
+	console.log("Edit Route 2 (id in route of company to edit):", req.params.id);
 	Townies.findByIdAndUpdate(req.params.id, req.body, (error, updatedTownie) => {
 		res.json(updatedTownie)
   });
