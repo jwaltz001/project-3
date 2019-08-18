@@ -2,17 +2,11 @@ const app = angular.module('MyApp', []);
 
 app.controller('AppController', ['$http', function($http, SharedValues){
     const controller = this;
-	// this.isActiveUser = () => {
-	// 	if (loggedInUsername) {
-	// 		return true
-	// 	}else {
-	// 		return false
-	// 	}
-	// }
 	/********************************
 	 * AUTHORIZATION/NAV FUNCTIONS  *
 	 *                              *
 	 ********************************/
+
 	this.createUser = function(){
         $http({
             method:'POST',
@@ -43,7 +37,7 @@ app.controller('AppController', ['$http', function($http, SharedValues){
             }
         }).then(
             function(response){
-                //console.log("Log In Response:",response.data);
+            	console.log("Log In Response:",response.data);
                 controller.username = null;
                 controller.password = null;
                 controller.goApp();
@@ -175,7 +169,7 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 			url:'/business'
 		}).then((res) => {
 			this.companies = res.data;
-			console.log(this.companies);
+			//console.log(this.companies);
 			this.allStatesList = () => {
 				const statesList = []
 				for (let i = 0; i < this.companies.length; i++) {
@@ -194,5 +188,6 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 	}
 
 	this.getTownies();
+	this.goApp();
  	//console.log("Edit enabled on page load:", this.isEditEnabled);
 }]);

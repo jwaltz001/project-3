@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
 
 ///show
 router.get("/:id", (req, res) => {
-	console.log("Townie to show 2 (get route id):", req.params.id);
+	//console.log("Townie to show 2 (get route id):", req.params.id);
   Townies.findById(req.params.id, (error, showtownie) => {
     res.json(showtownie)
   })
