@@ -30,6 +30,7 @@ router.get("/:id", (req, res) => {
 
 //Update
 router.put("/:id", (req, res) => {
+	console.log("Edit Route 2 (id in route of company to edit):", req.params.id);
 	Townies.findByIdAndUpdate(req.params.id, req.body, (error, updatedTownie) => {
 		res.json(updatedTownie)
   });

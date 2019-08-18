@@ -43,7 +43,7 @@ app.controller('AppController', ['$http', function($http, SharedValues){
             }
         }).then(
             function(response){
-                console.log("Log In Response:",response.data);
+                //console.log("Log In Response:",response.data);
                 controller.username = null;
                 controller.password = null;
                 controller.goApp();
@@ -60,7 +60,7 @@ app.controller('AppController', ['$http', function($http, SharedValues){
             url:'/sessions'
         }).then(
             function(response){
-                console.log(response);
+                console.log("logged out reponse:", response);
                 controller.loggedInUsername = null;
             },
             function(error){
@@ -70,7 +70,7 @@ app.controller('AppController', ['$http', function($http, SharedValues){
     };
 
     this.goApp = function(){
-        console.log('getting user info');
+        //console.log('getting user info');
         $http({
             method:'GET',
             url:'/app'
@@ -95,7 +95,7 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 		console.log("works");
 	}
 	this.createTownie = () => {
-		console.log(this.name);
+		//console.log(this.name);
 		$http({
 			method:'POST',
 			url:'/business',
@@ -127,33 +127,47 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 			console.log("Townie to show 3 (res):", res);
 			this.companyToShow = res.data
 			this.selectedCompanyAddress = res.data.streetAddress + ", " + res.data.city + ", " + res.data.state + " " + res.data.zipcode
-			console.log(this.companyAddress);
+			console.log(this.selectedCompanyAddress);
 			this.isCompanySelected = true;
+			console.log("Edit enabled on showTownie", this.isEditEnabled);
 			})
 	}
-
-	this.editTownie = (townieId) => {
+	//this.isEditEnabled = true;
+	//this.toggleEditTownieForm = () => {
+		//this.isEditEnabled = !this.isEditEnabled;
+	//}
+	this.editTownie = (company) => {
+		console.log("Edit Route 1 (id of company):", company._id);
 		$http({
 			method:'PUT',
-			url:'/business/'+townieId,
+			url:'/business/'+company._id,
 			data:{
-				name: this.name,
-				streetAddress: this.streetAddress,
-				city: this.city,
-				state: this.state,
-				zipcode: this.zipcode,
-				description: this.description
+				name: this.editedName,
+				streetAddress: this.editedStreetAddress,
+				city: this.editedCity,
+				state: this.editedState,
+				zipcode: this.editedZipcode,
+				description: this.editedDescription
 			}
-		}).then(() => {
-			this.name = null;
-			this.streetAddress = null;
-			this.city = null;
-			this.state = null;
-			this.zipcode = null;
-			this.description = null;
+		}).then((res) => {
+			console.log("Edit Route 3 (res.data of edited company):", res.data);
+			this.editedName = res.data.name;
+			this.editedStreetAddress = res.data.address;
+			this.editedCity = res.data.city;
+			this.editedState = res.data.state;
+			this.editedZipcode = res.data.zipcode;
+			this.editedDescription = res.data.description;
+			//this.isEditEnabled = true;
 			this.getTownies()
 		})
 	}
+
+  this.back = () => {
+    this.isCompanySelected = false;
+    this.back = function () {
+      this.isCompanySelected = true;
+    }
+  }
 
 	this.getTownies = () => {
 		$http({
@@ -180,5 +194,5 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 	}
 
 	this.getTownies();
-
+ 	console.log("Edit enabled on page load:", this.isEditEnabled);
 }]);
