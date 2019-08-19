@@ -19,6 +19,7 @@ app.controller('AppController', ['$http', function($http, SharedValues){
             function(response){
                 controller.newUsername = null;
                 controller.newPassword = null;
+				controller.goApp();
 				console.log(response);
             },
             function(error){
@@ -101,7 +102,7 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 				zipcode: this.zipcode,
 				description: this.description
 			}
-		}).then(() => {
+		}).then((res) => {
 			this.name = null;
 			this.streetAddress = null;
 			this.city = null;
