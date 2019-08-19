@@ -106,8 +106,10 @@
 					<select
 						ng-options= "state for state in ctrl.allStatesList()"
 						ng-model="searchBox.state">
-						<option value=""> Choose State </option>
+						<option ng-click="ctrl.getTownies()" value=""> Choose State </option>
+
 					</select>
+
 					<!--
 					<select
 						ng-options= "company as company.state for company in ctrl.companies"
@@ -125,6 +127,7 @@
 				        <tr
 							class="townie-table-row"
 							ng-repeat="companies in ctrl.companies | filter : searchBox"
+              ng-repeat= "state in ctrl.allStatesList() | filter: searchBox"
 							ng-click="ctrl.showTownie(companies)">
 				            <td>{{companies.name}}</td>
 				            <td>{{companies.city}}</td>
@@ -135,8 +138,8 @@
             </div>
 				</div>
 
-					<h4>{{ctrl.companyToShow.name}}</h4>
           <div ng-show="ctrl.isCompanySelected">
+			  <h4>{{ctrl.companyToShow.name}}</h4>
       <div id="loginModal" class="modal" ng-style="login">
   	                 <div class="modal-content">
   							<div class="modal-body">
@@ -199,7 +202,7 @@
 
 		</div>
         </div>
-<!-- Used Tutorial, esp. on https://developers.google.com/maps/documentation/javascript/examples/directions-panel -->
+<!-- Used Gooogle Tutorial, esp. on https://developers.google.com/maps/documentation/javascript/examples/directions-panel -->
 	<script>
 		function initMap() {
 			const directionsService = new google.maps.DirectionsService;

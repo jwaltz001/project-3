@@ -177,6 +177,12 @@ this.deleteTownie = function(companyToShow) {
     }
   }
 
+  // this.reset = function () {
+  //   this.searchBox = {state: allStatesList()};
+  //   $('#searchBox\\.state').find('> option').each(function() {
+  //      $(this).removeAttr('selected');
+  //   });
+  // };
 
 	this.getTownies = () => {
 		$http({
