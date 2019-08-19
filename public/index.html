@@ -98,7 +98,11 @@
 				</div>
 				<div ng-show="ctrl.isCompanySelected">
 					<h4>{{ctrl.companyToShow.name}}</h4>
+          <modal id="custom-modal-1">
+            <div class="modal">
+                <div class="modal-body">
 					<form ng-submit="ctrl.editTownie(ctrl.companyToShow)">
+            <div class="loginModal-content">
 		  				<input type="text" ng-model="ctrl.editedName" placeholder="Company Name" value="{{ctrl.companyToShow.name}}"/>
 						<input type="text" ng-model="ctrl.editedStreetAddress" placeholder="Street Address" value="{{ctrl.companyToShow.streetAddress}}"/>
 						<input type="text" ng-model="ctrl.editedCity" placeholder="City" value="{{ctrl.companyToShow.city}}"/>
@@ -106,7 +110,11 @@
 						<input type="text" ng-model="ctrl.editedZipcode" placeholder="Zipcode" value="{{ctrl.companyToShow.zipcode}}"/>
 						<textarea ng-model="ctrl.editedDescription" placeholder="description" value="{{ctrl.companyToShow.description}}"></textarea>
 						<input type="submit" value="Save Changes" ng-show="ctrl.isEditEnabled"/>
-		  			</form>
+            <button ng-click="vm.closeModal('custom-modal-1');">Close</button>
+            </form>
+            </div>
+            <div class="modal-background"></div>
+            </modal>
             		<button ng-hide="ctrl.isEditEnabled" ng-click="ctrl.toggleEditTownieForm()">Edit</button>
 						<div id="map-search-panel">
 							<b>Your Address:</b>
