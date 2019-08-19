@@ -2,6 +2,7 @@ const app = angular.module('MyApp', []);
 
 app.controller('AppController', ['$http', function($http, SharedValues){
     const controller = this;
+	this.date = new Date().getTime();
 	/********************************
 	 * AUTHORIZATION/NAV FUNCTIONS  *
 	 *                              *
@@ -156,6 +157,18 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 			this.getTownies()
 		})
 	}
+this.deleteTownie = function(companyToShow) {
+  console.log("delet route" + companyToShow);
+  $http({
+    method: 'DELETE',
+    url: '/business/' + companyToShow._id
+  }).then((res) => {
+    console.log(res.data);
+    this.getTownies();
+    this.companyToShow = null;
+    this.isCompanySelected = false;
+  })
+}
 
   this.back = () => {
     this.isCompanySelected = false;
@@ -163,6 +176,7 @@ app.controller('AppController', ['$http', function($http, SharedValues){
       this.isCompanySelected = true;
     }
   }
+
 
 	this.getTownies = () => {
 		$http({
@@ -186,6 +200,23 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 				return filteredStatesList
 			}
 		});
+	}
+
+	this.publishNewReview = (companyToShowId) => {
+		console.log("review route 1 (company id):", companyToShowId);
+		$http({
+			method: "PATCH",
+			url: "/business/userreviews/" + companyToShowId,
+			data: {
+				rating: this.newRating,
+				comments: this.newReview,
+				date: this.date
+			}
+		}).then((res) => {
+			console.log("review route 5 (.then -> returned townie from route):", res.data);
+			this.companyToShow = res.data;
+      console.log("lgging this" + this.companyToShow);
+		})
 	}
 
 	this.getTownies();

@@ -134,8 +134,12 @@
 				    </table>
             </div>
 				</div>
-				<div ng-show="ctrl.isCompanySelected">
+
 					<h4>{{ctrl.companyToShow.name}}</h4>
+          <div ng-show="ctrl.isCompanySelected">
+      <div id="loginModal" class="modal" ng-style="login">
+  	                 <div class="modal-content">
+  							<div class="modal-body">
 					<form ng-submit="ctrl.editTownie(ctrl.companyToShow)">
 		  				<input type="text" ng-model="ctrl.editedName" placeholder="Company Name" value="{{ctrl.companyToShow.name}}"/>
 						<input type="text" ng-model="ctrl.editedStreetAddress" placeholder="Street Address" value="{{ctrl.companyToShow.streetAddress}}"/>
@@ -143,9 +147,16 @@
 						<input type="text" ng-model="ctrl.editedState" placeholder="State" value="{{ctrl.companyToShow.state}}"/>
 						<input type="text" ng-model="ctrl.editedZipcode" placeholder="Zipcode" value="{{ctrl.companyToShow.zipcode}}"/>
 						<textarea ng-model="ctrl.editedDescription" placeholder="description" value="{{ctrl.companyToShow.description}}"></textarea>
-						<input type="submit" value="Save Changes" ng-show="ctrl.isEditEnabled"/>
-		  			</form>
-            		<button ng-hide="ctrl.isEditEnabled" ng-click="ctrl.toggleEditTownieForm()">Edit</button>
+						<input type="submit" value="Save Changes" ng-click="login={}">
+            </form>
+            <div class="modal-background"></div>
+            </div>
+          </div>
+        </div>
+					<button ng-click="login={'display': 'block'}">Edit Company</button>
+
+          <button ng-click="ctrl.deleteTownie(ctrl.companyToShow)">Delete Company</button>
+
 						<div id="map-search-panel">
 							<b>Your Address:</b>
 							<input type="text" id="start" value="{{ctrl.companyToShow.city}}">
@@ -160,10 +171,32 @@
             <button id="back-btn" type="button" ng-click="ctrl.back()">Back to List</button>
               <div ng-hide="isCompanySelected"></div>
 
-              </div>
           </form>
-				</div>
-			</div>
+		  <h4>Used this Townie?</h4>
+		  <fieldset>
+			  <legend>Write a New Review</legend>
+			  <form ng-submit="ctrl.publishNewReview(ctrl.companyToShow._id)">
+				  Trusty Townie Rating (0 to 5): <input type="number" ng-model="ctrl.newRating" min="0" max="5">
+				  Review:<textarea ng-modal="ctrl.newReview" rows="8" cols="80"></textarea>
+				  <input type="submit" value="Submit Review">
+			  </form>
+		  </fieldset>
+		  <div class="user-reviews">
+			  <!-- not sure how to:
+			  | orderBy: date -->
+			  <h4>Reviews for {{ctrl.companyToShow.name}}</h4>
+			  <article ng-repeat="review in ctrl.companyToShow.reviews">
+				  	<h6>Trusty Townie Rating: {{review.rating}}</h6>
+					<i>Reviewed on: {{ review.date | date:'MM/dd/yyyy @ h:mm:ssa'}}</i>
+					<p>{{review.comments}}</p>
+			  </article>
+		  </div>
+
+	  </div>
+	  </div>
+
+  </div>
+
 		</div>
         </div>
 <!-- Used Tutorial, esp. on https://developers.google.com/maps/documentation/javascript/examples/directions-panel -->
