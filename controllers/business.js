@@ -12,6 +12,22 @@ router.post("/", (req,res) => {
   });
 });
 
+//New User Review
+router.patch('/userreviews/:companyid', (req,res) => {
+	console.log("review route 2 (company id in params):", req.params.companyid);
+	const newReview = {
+		authorId: req.session.currentUser._id,
+		rating: req.body.rating,
+		comments: req.body.comments,
+		date: req.body.date,
+	}
+	console.log("review route 3 (new review in route):", newReview);
+	Townies.findByIdAndUpdate(req.params.companyid, {$push: {reviews:newReview}}, {new:true}, (err, updatedTownie) => {
+		console.log("review route 4 (townie updated with review):", updatedTownie);
+		res.json(updatedTownie)
+	})
+})
+
 //Index
 router.get("/", (req, res) => {
 	Townies.find({}, (error, allTownies) => {

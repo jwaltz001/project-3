@@ -3,6 +3,10 @@
     <head>
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"></script>
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 		<script src="app.js" charset="utf-8"></script>
 		<link rel="stylesheet" href="/css/normalize.css">
 		<link rel="stylesheet" href="/css/skeleton.css">
@@ -14,39 +18,73 @@
 			<nav>
         	<div ng-hide="ctrl.loggedInUsername">
 	            <!-- LOGIN -->
-	            <h3 ng-click="login={'display':'block'}">LOGIN/SIGN UP</h3>
+	            <h3 ng-click="login={'display':'block'}" class="actions">LOGIN</h3>
 	            <!-- login modal -->
 					<div id="loginModal" class="modal" ng-style="login">
 	                    <div class="modal-content">
 							<div class="modal-body">
+                                <h3>LOGIN</h3>
 								<form ng-submit="ctrl.logIn()">
 				                    <input type="text" ng-model="ctrl.username" placeholder="username">
 				                    <input type="password" ng-model="ctrl.password" placeholder="password">
-				                    <input type="submit" value="Log In" ng-click="login={}">
+				                    <input type="submit" value="LOG IN" ng-click="login={}" class="submit">
 				                </form>
-								<h2>OR</h2>
+                            </div>
+                            <div class="modal-footer">
+							<button ng-click="login={}" class="close">X</button>
+							</div>
+                        </div>
+                    </div>
 								<!-- CREATE USER -->
+                    <h3 ng-click="create={'display':'block'}" class="actions">SIGN UP</h3>
+                    <div id="createModal" class="modal" ng-style="create">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <h3>SIGN UP</h3>
 								<form ng-submit="ctrl.createUser()">
 					                <input type="text" ng-model="ctrl.newUsername" placeholder="username">
 					                <input type="text" ng-model="ctrl.newPassword" placeholder="password">
-					                <!-- <input type="text" ng-model="ctrl.confirmPassword" placeholder="confirm password"> -->
-					                <input type="submit" value="Create User"/>
+					                <input type="submit" class="submit" value="SIGN UP" ng-click="create={}">
 					            </form>
 							</div>
-							<div class="modal-footer">
-							<button ng-click="login={}" class="close">X</button>
-							</div>
+                            <div class="modal-footer">
+                            <button ng-click="create={}" class="close">X</button>
+                            </div>
+                        </div>
 						</div>
 	                </div>
-				</div>
 	            <!-- LOGOUT -->
 				<div ng-show="ctrl.loggedInUsername">
-					<form ng-submit="ctrl.logOut()">
-		                <input type="submit" value="Log Out">
-		            </form>
+                    <h3 class="greeting">HELLO, {{ctrl.loggedInUsername}}!</h3>
+                    <h3 ng-click="ctrl.logOut()" class="actions">LOG OUT</h3>
 				</div>
 	        </nav>
-			<h1>Trusty Townies</h1>
+        <div class="main">
+            <div class="title">
+                <h1>Trusty Townies</h1>
+                <!-- <img src="../images/icons8-maintenance-60.png" alt=""> -->
+            </div>
+
+            <div class="mainimg"></div>
+            <div class="mainboxes">
+                <div class="box1">
+                    <h1>FIND A <br> COMPANY</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Semper risus in hendrerit gravida. Vitae elementum curabitur vitae nunc. Tempor orci dapibus ultrices in iaculis. Ornare aenean euismod elementum nisi quis eleifend quam adipiscing.</p>
+                </div>
+                <div class="box2">
+                    <h1>SEARCH IN <br> YOUR STATE</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam purus sit amet luctus venenatis. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Duis at tellus at urna condimentum mattis pellentesque id nibh. Mattis aliquam faucibus purus in.</p>
+                </div>
+                <div class="box3">
+                    <h1>CREATE <br> REVIEWS</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam purus sit amet luctus venenatis. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Duis at tellus at urna condimentum mattis pellentesque id nibh. Mattis aliquam faucibus purus in.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            &copy; Copyright 2019 All Rights Reserved
+        </div>
+
 	    	<div id="main-townie-display" ng-show="ctrl.loggedInUsername">
           <div ng-hide="ctrl.isCompanySelected">
 				<h4>Know a Townie you Trust?<br>
@@ -96,8 +134,12 @@
 				    </table>
             </div>
 				</div>
-				<div ng-show="ctrl.isCompanySelected">
+
 					<h4>{{ctrl.companyToShow.name}}</h4>
+          <div ng-show="ctrl.isCompanySelected">
+      <div id="loginModal" class="modal" ng-style="login">
+  	                 <div class="modal-content">
+  							<div class="modal-body">
 					<form ng-submit="ctrl.editTownie(ctrl.companyToShow)">
 		  				<input type="text" ng-model="ctrl.editedName" placeholder="Company Name" value="{{ctrl.companyToShow.name}}"/>
 						<input type="text" ng-model="ctrl.editedStreetAddress" placeholder="Street Address" value="{{ctrl.companyToShow.streetAddress}}"/>
@@ -105,9 +147,16 @@
 						<input type="text" ng-model="ctrl.editedState" placeholder="State" value="{{ctrl.companyToShow.state}}"/>
 						<input type="text" ng-model="ctrl.editedZipcode" placeholder="Zipcode" value="{{ctrl.companyToShow.zipcode}}"/>
 						<textarea ng-model="ctrl.editedDescription" placeholder="description" value="{{ctrl.companyToShow.description}}"></textarea>
-						<input type="submit" value="Save Changes" ng-show="ctrl.isEditEnabled"/>
-		  			</form>
-            		<button ng-hide="ctrl.isEditEnabled" ng-click="ctrl.toggleEditTownieForm()">Edit</button>
+						<input type="submit" value="Save Changes" ng-click="login={}">
+            </form>
+            <div class="modal-background"></div>
+            </div>
+          </div>
+        </div>
+					<button ng-click="login={'display': 'block'}">Edit Company</button>
+
+          <button ng-click="ctrl.deleteTownie(ctrl.companyToShow)">Delete Company</button>
+
 						<div id="map-search-panel">
 							<b>Your Address:</b>
 							<input type="text" id="start" value="{{ctrl.companyToShow.city}}">
@@ -122,11 +171,34 @@
             <button id="back-btn" type="button" ng-click="ctrl.back()">Back to List</button>
               <div ng-hide="isCompanySelected"></div>
 
-              </div>
           </form>
-				</div>
-			</div>
+		  <h4>Used this Townie?</h4>
+		  <fieldset>
+			  <legend>Write a New Review</legend>
+			  <form ng-submit="ctrl.publishNewReview(ctrl.companyToShow._id)">
+				  Trusty Townie Rating (0 to 5): <input type="number" ng-model="ctrl.newRating" min="0" max="5">
+				  Review:<textarea ng-modal="ctrl.newReview" rows="8" cols="80"></textarea>
+				  <input type="submit" value="Submit Review">
+			  </form>
+		  </fieldset>
+		  <div class="user-reviews">
+			  <!-- not sure how to:
+			  | orderBy: date -->
+			  <h4>Reviews for {{ctrl.companyToShow.name}}</h4>
+			  <article ng-repeat="review in ctrl.companyToShow.reviews">
+				  	<h6>Trusty Townie Rating: {{review.rating}}</h6>
+					<i>Reviewed on: {{ review.date | date:'MM/dd/yyyy @ h:mm:ssa'}}</i>
+					<p>{{review.comments}}</p>
+			  </article>
+		  </div>
+
+	  </div>
+	  </div>
+
+  </div>
+
 		</div>
+        </div>
 <!-- Used Tutorial, esp. on https://developers.google.com/maps/documentation/javascript/examples/directions-panel -->
 	<script>
 		function initMap() {
