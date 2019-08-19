@@ -3,6 +3,10 @@
     <head>
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"></script>
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 		<script src="app.js" charset="utf-8"></script>
 		<link rel="stylesheet" href="/css/normalize.css">
 		<link rel="stylesheet" href="/css/skeleton.css">
@@ -14,39 +18,73 @@
 			<nav>
         	<div ng-hide="ctrl.loggedInUsername">
 	            <!-- LOGIN -->
-	            <h3 ng-click="login={'display':'block'}">LOGIN/SIGN UP</h3>
+	            <h3 ng-click="login={'display':'block'}" class="actions">LOGIN</h3>
 	            <!-- login modal -->
 					<div id="loginModal" class="modal" ng-style="login">
 	                    <div class="modal-content">
 							<div class="modal-body">
+                                <h3>LOGIN</h3>
 								<form ng-submit="ctrl.logIn()">
 				                    <input type="text" ng-model="ctrl.username" placeholder="username">
 				                    <input type="password" ng-model="ctrl.password" placeholder="password">
-				                    <input type="submit" value="Log In" ng-click="login={}">
+				                    <input type="submit" value="LOG IN" ng-click="login={}" class="submit">
 				                </form>
-								<h2>OR</h2>
+                            </div>
+                            <div class="modal-footer">
+							<button ng-click="login={}" class="close">X</button>
+							</div>
+                        </div>
+                    </div>
 								<!-- CREATE USER -->
+                    <h3 ng-click="create={'display':'block'}" class="actions">SIGN UP</h3>
+                    <div id="createModal" class="modal" ng-style="create">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <h3>SIGN UP</h3>
 								<form ng-submit="ctrl.createUser()">
 					                <input type="text" ng-model="ctrl.newUsername" placeholder="username">
 					                <input type="text" ng-model="ctrl.newPassword" placeholder="password">
-					                <!-- <input type="text" ng-model="ctrl.confirmPassword" placeholder="confirm password"> -->
-					                <input type="submit" value="Create User"/>
+					                <input type="submit" class="submit" value="SIGN UP" ng-click="create={}">
 					            </form>
 							</div>
-							<div class="modal-footer">
-							<button ng-click="login={}" class="close">X</button>
-							</div>
+                            <div class="modal-footer">
+                            <button ng-click="create={}" class="close">X</button>
+                            </div>
+                        </div>
 						</div>
 	                </div>
-				</div>
 	            <!-- LOGOUT -->
 				<div ng-show="ctrl.loggedInUsername">
-					<form ng-submit="ctrl.logOut()">
-		                <input type="submit" value="Log Out">
-		            </form>
+                    <h3 class="greeting">HELLO, {{ctrl.loggedInUsername}}!</h3>
+                    <h3 ng-click="ctrl.logOut()" class="actions">LOG OUT</h3>
 				</div>
 	        </nav>
-			<h1>Trusty Townies</h1>
+        <div class="main">
+            <div class="title">
+                <h1>Trusty Townies</h1>
+                <!-- <img src="../images/icons8-maintenance-60.png" alt=""> -->
+            </div>
+
+            <div class="mainimg"></div>
+            <div class="mainboxes">
+                <div class="box1">
+                    <h1>FIND A <br> COMPANY</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Semper risus in hendrerit gravida. Vitae elementum curabitur vitae nunc. Tempor orci dapibus ultrices in iaculis. Ornare aenean euismod elementum nisi quis eleifend quam adipiscing.</p>
+                </div>
+                <div class="box2">
+                    <h1>SEARCH IN <br> YOUR STATE</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam purus sit amet luctus venenatis. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Duis at tellus at urna condimentum mattis pellentesque id nibh. Mattis aliquam faucibus purus in.</p>
+                </div>
+                <div class="box3">
+                    <h1>CREATE <br> REVIEWS</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam purus sit amet luctus venenatis. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Duis at tellus at urna condimentum mattis pellentesque id nibh. Mattis aliquam faucibus purus in.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            &copy; Copyright 2019 All Rights Reserved
+        </div>
+
 	    	<div id="main-townie-display" ng-show="ctrl.loggedInUsername">
           <div ng-hide="ctrl.isCompanySelected">
 				<h4>Know a Townie you Trust?<br>
@@ -127,6 +165,7 @@
 				</div>
 			</div>
 		</div>
+        </div>
 <!-- Used Tutorial, esp. on https://developers.google.com/maps/documentation/javascript/examples/directions-panel -->
 	<script>
 		function initMap() {

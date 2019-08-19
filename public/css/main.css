@@ -1,3 +1,7 @@
+/* * {
+	border: solid red 1px;
+} */
+
 .modal {
 	display: none;
 	position: fixed;
@@ -11,13 +15,16 @@
 }
 .modal-content {
 	background-color: white;
-	margin: 15% auto;
+	margin: 20% auto;
 	padding: 20px;
 	border: 1px solid grey;
 	width: 75%;
+	max-height: 400px;
+	max-width: 400px;
 }
 .modal-body{
 	display: flex;
+	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
 }
@@ -26,25 +33,145 @@
 	flex-direction: column;
 	width: 35%;
 }
-.modal-body > h2 {
-	width: 20%;
-	margin: 0;
-	padding: 0;
-	text-align: center;
-	border-right: .1em solid black;
-	border-left: .1em solid black;
+
+.modal-body > h3 {
+	font-family: 'Luckiest Guy', cursive;
+	letter-spacing: 1px;
+	color: #40454d;
 }
+
 .modal-footer {
 	display:flex;
 	flex-direction: row-reverse;
 	padding: 1em 1em 0 1em;
 }
 h3:hover {
-	color: blue;
+	color: #40454d;
 }
 .townie-table-row:hover{
 	background-color: rgba(30, 60, 103, .5);
 	color: white;
+}
+
+form > .submit {
+	background-color: #72befc;
+	color: white;
+}
+
+nav {
+	background-color: #72befc;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+nav > div {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+nav > div > h3 {
+	padding: 10px 20px;
+	margin: 0px;
+	font-size: 18px;
+}
+
+.actions {
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+}
+
+.greeting {
+	text-transform: uppercase;
+	color: white;
+}
+
+.greeting:hover {
+	color: white;
+}
+
+.container {
+	width: 100%;
+	margin: 0px 0px;
+	background-color: rgba(52, 60, 66);
+}
+
+.title {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.title > h1{
+	color: #72befc;
+	font-family: 'Luckiest Guy', cursive;
+	text-transform: uppercase;
+	text-align: center;
+	padding-top: 80px;
+	margin: 0px;
+	font-size: 10vw;
+	letter-spacing: 5px;
+}
+
+.title > img {
+	align-self: center;
+}
+
+.mainimg {
+	background-image: url("../images/clark-young-fQxMGkYXqFU-unsplash.jpg");
+	height: 300px;
+	background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+	filter: grayscale();
+}
+
+.mainboxes {
+	display: flex;
+	flex-direction: row;
+	margin: 20px;
+}
+
+.mainboxes > div {
+	display: flex;
+	flex-direction: column;
+	margin: 10px;
+}
+
+.mainboxes > div > h1 {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 28px;
+	font-weight: 700;
+	color: #72befc;
+	text-align: center;
+}
+
+.mainboxes > div > p {
+	color: whitesmoke;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+	padding: 5px 20px;
+	font-size: 12px;
+	text-align: center;
+}
+
+.footer {
+	background-color: #72befc;
+	color: #40454d;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 12px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 40px;
+}
+
+
+body {
+	width: 100%;
 }
 
 #main-townie-display{
