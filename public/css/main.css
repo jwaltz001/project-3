@@ -238,10 +238,11 @@ body {
 .approval-div {
 	display: flex;
 	align-items: flex-end;
+	margin-bottom: 2em;
+	margin-left: 2em;
 }
-.approval-div > h5 {
-	margin-right: 2em;
-	margin-bottom: 0;
+.approval-div > h5, p {
+	margin: 0 2em;
 }
 .approve-ribbon {
       position: relative;

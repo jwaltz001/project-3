@@ -7,7 +7,7 @@ const Townies = require("../models/companies.js");
 
 //Create
 router.post("/", (req,res) => {
-  	Townies.create(req.body, (error, createdTownie) => {
+	Townies.create(req.body, (error, createdTownie) => {
     res.json(createdTownie);
   });
 });
@@ -27,7 +27,14 @@ router.patch('/userreviews/:companyid', (req,res) => {
 		res.json(updatedTownie)
 	})
 })
-
+//New endorsements
+router.patch("/approve/:companyid", (req,res) => {
+	Townies.findById(req.params.companyid, (err, foundTownie) => {
+		foundTownie.endorsements ++;
+		foundTownie.save();
+		res.json(foundTownie);
+	})
+})
 //Index
 router.get("/", (req, res) => {
 	Townies.find({}, (error, allTownies) => {

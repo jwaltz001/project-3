@@ -101,7 +101,9 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 				city: this.city,
 				state: this.state,
 				zipcode: this.zipcode,
-				description: this.description
+				description: this.description,
+				endorsements: 0,
+				faves: 0
 			}
 		}).then((res) => {
 			this.name = null;
@@ -207,7 +209,22 @@ this.deleteTownie = function(companyToShow) {
 			}
 		});
 	}
+	//need to stop same user from approving multiple times
+	this.isApproved = false;
+	this.approveRibbonHover = () => {
+		this.isApprovedHover = !this.isApprovedHover;
+	}
+	this.approveRibbonSelect = (company) => {
+		this.isApproved = true;
+		$http({
+			method: "PATCH",
+			url: "/business/approve/" + company._id
 
+		}).then((res) => {
+			//console.log("endorsements", res.data);
+			this.companyToShow = res.data;
+		})
+	}
 	this.publishNewReview = (companyToShowId) => {
 		console.log("review route 1 (company id):", companyToShowId);
 		$http({
