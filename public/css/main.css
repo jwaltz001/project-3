@@ -1,6 +1,8 @@
 /* * {
 	border: solid red 1px;
 } */
+
+/* MODAL START */
 .modal {
 	display: none;
 	position: fixed;
@@ -32,18 +34,17 @@
 	flex-direction: column;
 	width: 35%;
 }
-
 .modal-body > h3 {
 	font-family: 'Luckiest Guy', cursive;
 	letter-spacing: 1px;
 	color: #40454d;
 }
-
 .modal-footer {
 	display:flex;
 	flex-direction: row-reverse;
 	padding: 1em 1em 0 1em;
 }
+/* MODAL END */
 h3:hover {
 	color: #40454d;
 }
@@ -198,7 +199,43 @@ nav > div > h3 {
 	height: 40px;
 }
 
-/* PARTIAL START */
+/* FIND TOWNIE PARTIAL START */
+.top-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding-top: 20px;
+}
+.top-container > div {
+	color: white;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	text-transform: uppercase;
+	display: flex;
+	flex-direction: column;
+}
+.top-container > div > input {
+	color: black;
+}
+.top-container > div > select {
+	color: black;
+}
+.main-container-find {
+	background-color: #40454d;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.bottom-container > table {
+	width: 90%;
+	color: white;
+	margin: 40px;
+}
+
+
+/* FIND TOWNIE PARTIAL END */
+
+/* ADD TOWNIE PARTIAL START */
 .main-container {
 	background-color: #40454d;
 	width: 100%;
@@ -247,7 +284,7 @@ nav > div > h3 {
 
 	filter: grayscale();
 }
-/* PARTIAL END */
+/* ADD TOWNIE PARTIAL END */
 
 body {
 	width: 100%;
