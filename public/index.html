@@ -99,7 +99,7 @@
             <div id="map-search-panel">
             <b> Your Address: </b>
             <input type="text" id="start" value="{{ctrl.companyToShow.city}}">
-            <input type="hidden" id="end" value="{{ctrl.selectedCompanyAddress}}">
+            <input type="hidden" id="end" value="{{ctrl.companyToShow.streetAddress + ctrl.companyToShow.city + ctrl.companyToShow.state}}">
             <button id="directions-btn" type="button" name="button">Get Directions</button>
             </div>
             <div id="map-directions-display">
