@@ -64,24 +64,31 @@
 	                <h1 class="text-focus-in">Trusty Townies</h1>
 	                <!-- <img src="../images/icons8-maintenance-60.png" alt=""> -->
 	            </div>
-	            <div class="mainimg"></div>
-	            <div class="mainboxes">
-	                <div class="box1" ng-click="ctrl.changeInclude('findtownie'); ctrl.findatownie = true">
-	                    <h1 ng-style="box1" ng-click="box1={'color':'white'}; box2={'color':'#72befc'}; box3={'color':'#72befc'}">FIND A <br>TOWNIE</h1>
-	                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Semper risus in hendrerit gravida. Vitae elementum curabitur vitae nunc. Tempor orci dapibus ultrices in iaculis. Ornare aenean euismod elementum nisi quis eleifend quam adipiscing.</p>
-	                </div>
-	                <div class="box2" ng-click= "ctrl.changeInclude('addtownie'); ctrl.findatownie = false">
-	                    <h1 ng-style="box2" ng-click="box2={'color':'white'}; box1={'color':'#72befc'}; box3={'color':'#72befc'}">ADD A<br>TOWNIE</h1>
-	                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam purus sit amet luctus venenatis. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Duis at tellus at urna condimentum mattis pellentesque id nibh. Mattis aliquam faucibus purus in.</p>
-	                </div>
-	                <div class="box3">
-	                    <h1 ng-style="box3" ng-click="box3={'color':'white'}; box1={'color':'#72befc'}; box2={'color':'#72befc'}">CREATE <br> REVIEWS</h1>
-	                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam purus sit amet luctus venenatis. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Duis at tellus at urna condimentum mattis pellentesque id nibh. Mattis aliquam faucibus purus in.</p>
-	                </div>
-	            </div>
-	        </div>
+              <div class="mainimg"></div>
+             <div class="mainboxes" ng-hide="ctrl.loggedInUsername">
+                 <div class="box1">
+                     <h1 ng-style="box1">FIND A <br>TOWNIE</h1>
+                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Semper risus in hendrerit gravida. Vitae elementum curabitur vitae nunc. Tempor orci dapibus ultrices in iaculis. Ornare aenean euismod elementum nisi quis eleifend quam adipiscing.</p>
+                 </div>
+                 <div class="box2" >
+                     <h1 ng-style="box2">ADD A<br>TOWNIE</h1>
+                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam purus sit amet luctus venenatis. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Duis at tellus at urna condimentum mattis pellentesque id nibh. Mattis aliquam faucibus purus in.</p>
+                 </div>
+                 <div class="box3">
+                     <h1 ng-style="box3">CREATE <br> REVIEWS</h1>
+                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam purus sit amet luctus venenatis. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Duis at tellus at urna condimentum mattis pellentesque id nibh. Mattis aliquam faucibus purus in.</p>
+                 </div>
+             </div>
+         </div>
+
+
         <!-- AFTER LOGIN -->
 		    <div id="main-townie-display" ng-show="ctrl.loggedInUsername">
+          <div class="mainbtns">
+                  <button ng-click="ctrl.changeInclude('findtownie'); ctrl.findatownie = true" type="button" name="button">Find A Townie</button>
+
+                      <button ng-click="ctrl.changeInclude('addtownie'); ctrl.findatownie = false" type="button" name="button">Create A Townie</button>
+            </div>
 	        	<!-- <div ng-hide="ctrl.isCompanySelected"> -->
 					<!-- <h4>Know a Townie you Trust?</h4> -->
 					<div ng-include="ctrl.includePath">
