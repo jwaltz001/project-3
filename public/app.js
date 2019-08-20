@@ -240,10 +240,19 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 		}).then((res) => {
 			console.log("review route 5 (.then -> returned townie from route):", res.data);
 			this.companyToShow = res.data;
-      console.log("lgging this" + this.companyToShow);
+      		console.log("logging this" + this.companyToShow);
 		})
 	}
 
+	this.searchYelp = () => {
+		$http({
+			method: "GET",
+			url: "https://api.yelp.com/v3/businesses/search?limit=10&term=" + this.yelpSearchName + "&location=" + this.yelpSearchCity + this.yelpSearchState,
+			Authorization: "Bearer nSZt3_3hdEoT09d9VuVMUbkQUz7JIViAKxl_DLMSpwmuMkD6CWPhaOOA62rf5qExfj7q8pDw07FRfxQw3ibkR-PpIAMggNu4manvUY2af0dRP9sBJVU1SCmzSpRYXXYx"
+		}).then((res) => {
+			console.log("yelp search return",res.data);
+		})
+	}
 	this.getTownies();
 	this.goApp();
  	//console.log("Edit enabled on page load:", this.isEditEnabled);

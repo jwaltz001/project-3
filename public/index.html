@@ -83,18 +83,26 @@
         <!-- AFTER LOGIN -->
 		    <div id="main-townie-display" ng-show="ctrl.loggedInUsername">
 	        	<div ng-hide="ctrl.isCompanySelected">
-					<h4>Know a Townie you Trust?<br>
-				   		<span>Add them here:</span>
-				   	</h4>
-					<form ng-submit="ctrl.createTownie()">
-		  				<input type="text" ng-model="ctrl.name" placeholder="Company Name"/>
-						<input type="text" ng-model="ctrl.streetAddress" placeholder="Street Address"/>
-						<input type="text" ng-model="ctrl.city" placeholder="City"/>
-						<input type="text" ng-model="ctrl.state" placeholder="State"/>
-						<input type="text" ng-model="ctrl.zipcode" placeholder="Zipcode"/>
-						<textarea ng-model="ctrl.description" placeholder="description"></textarea>
-						<input type="submit" value="Create New Townie"/>
-		  			</form>
+					<h4>Know a Townie you Trust?</h4>
+					Search for their info:
+					<form ng-submit="ctrl.searchYelp()">
+						<input type="text" ng-model="ctrl.yelpSearchName" placeholder="Name">
+						<input type="text" ng-model="ctrl.yelpSearchCity" placeholder="City">
+						<input type="text" ng-model="ctrl.yelpSearchState" placeholder="State">
+						<input type="submit" value="search">
+					</form>
+					<fieldset>
+						<legend>Add Them Here</legend>
+						<form ng-submit="ctrl.createTownie()">
+							<input type="text" ng-model="ctrl.name" placeholder="Company Name"/>
+							<input type="text" ng-model="ctrl.streetAddress" placeholder="Street Address"/>
+							<input type="text" ng-model="ctrl.city" placeholder="City"/>
+							<input type="text" ng-model="ctrl.state" placeholder="State"/>
+							<input type="text" ng-model="ctrl.zipcode" placeholder="Zipcode"/>
+							<textarea ng-model="ctrl.description" placeholder="description"></textarea>
+							<input type="submit" value="Create New Townie"/>
+						</form>
+					</fieldset>
 					<div>
 					    Search Company Name:<input ng-model="searchBox.name" type="text" placeholder="Enter a Name">
 					    Search By City:<input ng-model="searchBox.city" type="text" placeholder="Enter a City">
