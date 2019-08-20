@@ -22,7 +22,10 @@ router.post('/', (req, res)=>{
             req.session.currentUser = foundUser;
             res.status(201).json({
               status:201,
-              message:'session created'
+              message:'session created',
+			  data:{
+				  sessionUser: req.session.currentUser
+			  }
             });
         } else {
             //if the passwords don't match, tell the user
@@ -39,9 +42,9 @@ router.post('/newuser', (req, res)=>{
     //encrypt what the user typed for password
     req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
     User.create(req.body, (err, createdUser)=>{
-        res.json(createdUser);
+		req.session.currentUser = createdUser;
+		res.json(createdUser);
     });
 });
-
 
 module.exports = router;

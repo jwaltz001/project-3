@@ -1,5 +1,3 @@
-
-
 /***********************************
  * Dependancies and Configurations *
  *                                 *
@@ -9,7 +7,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 require('dotenv').config();
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 console.log(process.env.MONGODB_URI);
 
@@ -27,6 +25,12 @@ app.use(session({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
 /////////////routes????//////
 app.get('/app', (req, res)=>{
