@@ -164,6 +164,7 @@
 					<div id="map-directions-display">
 						<div id="map"></div>
 						<div id="right-panel"></div>
+						<button id="close-map-btn">Close Map</button>
 					</div>
 		        	<form>
 			            <button id="back-btn" type="button" ng-click="ctrl.back()">Back to List</button>
@@ -217,7 +218,10 @@
 
 			const onChangeHandler = function() {
 				calculateAndDisplayRoute(directionsService, directionsRenderer);
-				document.getElementById("map").style.display = "block";
+				document.getElementById("map-directions-display").style.display = "flex";
+				document.getElementById('close-map-btn').addEventListener('click',() => {
+					document.getElementById('map-directions-display').style.display = "none";
+				})
 			};
 			document.getElementById("directions-btn").removeEventListener("click", initMap);
 			document.getElementById('directions-btn').addEventListener('click', onChangeHandler);
