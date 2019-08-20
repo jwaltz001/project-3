@@ -31,6 +31,13 @@ app.use(express.urlencoded({ extended: false }));
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 //   next();
 // });
+//
+// app.all('/*', function (request, response, next) {
+// 	  response.header("Access-Control-Allow-Origin", "*");
+// 	  response.header("Access-Control-Allow-Headers", "X-Requested-With");
+// 	  response.header("Access-Control-Allow-Methods", "GET, POST", "PUT", "DELETE");
+// 	  next();
+//   });
 
 /////////////routes????//////
 app.get('/app', (req, res)=>{
