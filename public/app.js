@@ -124,11 +124,16 @@ app.controller('AppController', ['$http', function($http){
 	this.isCompanySelected = false;
 	this.isFindTownieSelected = false;
 	this.isAddTownieSelected = false;
+
 	this.includePath = '';
-		this.changeInclude = () => {
-			this.includePath = 'partials/partials.html'
-			//'partials/'+ path +'.html';
+		this.changeInclude = (path) => {
+			this.includePath = 'partials/'+ path +'.html';
 		}
+
+	// this.includeNavPath = "";
+	// this.changeNavInclude= (path) => {
+	// 	this.includeNavPath = 'partials/partials/'+ path +'.html';
+	// }
 	this.createTownie = () => {
 		//console.log(this.name);
 		$http({
@@ -288,8 +293,11 @@ app.controller('AppController', ['$http', function($http){
 	this.searchYelp = () => {
 		$http({
 			method: "GET",
-			url: "https://api.yelp.com/v3/businesses/search?limit=10&term=" + this.yelpSearchName + "&location=" + this.yelpSearchCity + this.yelpSearchState,
-			Authorization: "Bearer nSZt3_3hdEoT09d9VuVMUbkQUz7JIViAKxl_DLMSpwmuMkD6CWPhaOOA62rf5qExfj7q8pDw07FRfxQw3ibkR-PpIAMggNu4manvUY2af0dRP9sBJVU1SCmzSpRYXXYx"
+			url: "/yelp",
+			data:{
+				apiUrl:"https://api.yelp.com/v3/businesses/search?limit=10&term=" + this.yelpSearchName + "&location=" +this.yelpSearchCity + this.yelpSearchState,
+				Authorization: "Bearer nSZt3_3hdEoT09d9VuVMUbkQUz7JIViAKxl_DLMSpwmuMkD6CWPhaOOA62rf5qExfj7q8pDw07FRfxQw3ibkR-PpIAMggNu4manvUY2af0dRP9sBJVU1SCmzSpRYXXYx"
+		}
 		}).then((res) => {
 			console.log("yelp search return",res.data);
 		})

@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Townies = require("../models/companies.js");
 
-
 ///////////////////////ROUTES////////////////////////////
 
 //Create
