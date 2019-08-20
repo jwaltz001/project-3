@@ -198,7 +198,7 @@
 				  <!-- not sure how to:
 				  | orderBy: date -->
 				  <h4>Reviews for {{ctrl.companyToShow.name}}</h4>
-				  <article ng-repeat="review in ctrl.companyToShow.reviews">
+				  <article ng-repeat="review in ctrl.companyToShow.reviews | orderBy: '-date'">
 					  	<h6>Trusty Townie Rating: {{review.rating}}</h6>
 						<i>Reviewed on: {{ review.date | date:'MM/dd/yyyy @ h:mm:ssa'}}</i>
 						<p>{{review.comments}}</p>
