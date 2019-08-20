@@ -25,7 +25,7 @@
 			class="townie-table-row"
 			ng-repeat="companies in ctrl.companies | filter : searchBox"
 ng-repeat= "state in ctrl.allStatesList() | filter: searchBox"
-			ng-click="ctrl.changeInclude('showtownie'); ctrl.companyToShow = companies">
+			ng-click="ctrl.changeInclude('showtownie'); ctrl.companyToShow = companies; ctrl.showMap=true">
 			<td>{{companies.name}}</td>
 			<td>{{companies.city}}</td>
 			<td>{{companies.state}}</td>
