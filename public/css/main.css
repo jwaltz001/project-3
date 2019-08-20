@@ -198,6 +198,56 @@ nav > div > h3 {
 	height: 40px;
 }
 
+/* PARTIAL START */
+.main-container {
+	background-color: #40454d;
+	width: 100%;
+}
+
+.partialbody {
+	margin: 20px;
+}
+
+.partialbody > form {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.partialbody > legend {
+	color: white;
+	padding: 5px;
+}
+
+.partialbody > input {
+	margin: 5px;
+}
+
+#submitaddnew {
+	background-color: rgba(255, 255, 255, 1);
+	color: #72befc;
+}
+
+#submitaddnew:hover {
+	color: #40454d;
+}
+
+.main-container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.small-container {
+	width: 50%;
+}
+
+#right-container > img {
+	width: 100%;
+
+	filter: grayscale();
+}
+/* PARTIAL END */
 
 body {
 	width: 100%;
