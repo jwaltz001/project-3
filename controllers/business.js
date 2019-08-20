@@ -7,7 +7,7 @@ const Townies = require("../models/companies.js");
 
 //Create
 router.post("/", (req,res) => {
-  	Townies.create(req.body, (error, createdTownie) => {
+	Townies.create(req.body, (error, createdTownie) => {
     res.json(createdTownie);
   });
 });
@@ -15,6 +15,7 @@ router.post("/", (req,res) => {
 //New User Review
 router.patch('/userreviews/:companyid', (req,res) => {
 	console.log("review route 2 (company id in params):", req.params.companyid);
+	console.log("2.5 comments", req.body.comments);
 	const newReview = {
 		authorId: req.session.currentUser._id,
 		rating: req.body.rating,
@@ -27,7 +28,14 @@ router.patch('/userreviews/:companyid', (req,res) => {
 		res.json(updatedTownie)
 	})
 })
-
+//New endorsements
+router.patch("/approve/:companyid", (req,res) => {
+	Townies.findById(req.params.companyid, (err, foundTownie) => {
+		foundTownie.endorsements ++;
+		foundTownie.save();
+		res.json(foundTownie);
+	})
+})
 //Index
 router.get("/", (req, res) => {
 	Townies.find({}, (error, allTownies) => {

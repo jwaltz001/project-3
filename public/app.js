@@ -101,7 +101,9 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 				city: this.city,
 				state: this.state,
 				zipcode: this.zipcode,
-				description: this.description
+				description: this.description,
+				endorsements: 0,
+				faves: 0
 			}
 		}).then((res) => {
 			this.name = null;
@@ -157,26 +159,33 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 			this.getTownies()
 		})
 	}
-this.deleteTownie = function(companyToShow) {
-  console.log("delet route" + companyToShow);
-  $http({
-    method: 'DELETE',
-    url: '/business/' + companyToShow._id
-  }).then((res) => {
-    console.log(res.data);
-    this.getTownies();
-    this.companyToShow = null;
-    this.isCompanySelected = false;
-  })
-}
 
-  this.back = () => {
-    this.isCompanySelected = false;
-    this.back = function () {
-      this.isCompanySelected = true;
-    }
-  }
+	this.deleteTownie = function(companyToShow) {
+	  console.log("delet route" + companyToShow);
+	  $http({
+	    method: 'DELETE',
+	    url: '/business/' + companyToShow._id
+	  }).then((res) => {
+	    console.log(res.data);
+	    this.getTownies();
+	    this.companyToShow = null;
+	    this.isCompanySelected = false;
+	  })
+	}
 
+	  this.back = () => {
+	    this.isCompanySelected = false;
+	    this.back = function () {
+	      this.isCompanySelected = true;
+	    }
+	  }
+
+  // this.reset = function () {
+  //   this.searchBox = {state: allStatesList()};
+  //   $('#searchBox\\.state').find('> option').each(function() {
+  //      $(this).removeAttr('selected');
+  //   });
+  // };
 
 	this.getTownies = () => {
 		$http({
@@ -201,8 +210,24 @@ this.deleteTownie = function(companyToShow) {
 			}
 		});
 	}
+	//need to stop same user from approving multiple times
+	this.isApproved = false;
+	this.approveRibbonHover = () => {
+		this.isApprovedHover = !this.isApprovedHover;
+	}
+	this.approveRibbonSelect = (company) => {
+		this.isApproved = true;
+		$http({
+			method: "PATCH",
+			url: "/business/approve/" + company._id
 
+		}).then((res) => {
+			//console.log("endorsements", res.data);
+			this.companyToShow = res.data;
+		})
+	}
 	this.publishNewReview = (companyToShowId) => {
+		console.log("review route 1 (company id):", companyToShowId);
 		console.log("review route 1 (company id):", companyToShowId);
 		$http({
 			method: "PATCH",
@@ -215,10 +240,19 @@ this.deleteTownie = function(companyToShow) {
 		}).then((res) => {
 			console.log("review route 5 (.then -> returned townie from route):", res.data);
 			this.companyToShow = res.data;
-      console.log("lgging this" + this.companyToShow);
+      		console.log("logging this" + this.companyToShow);
 		})
 	}
 
+	this.searchYelp = () => {
+		$http({
+			method: "GET",
+			url: "https://api.yelp.com/v3/businesses/search?limit=10&term=" + this.yelpSearchName + "&location=" + this.yelpSearchCity + this.yelpSearchState,
+			Authorization: "Bearer nSZt3_3hdEoT09d9VuVMUbkQUz7JIViAKxl_DLMSpwmuMkD6CWPhaOOA62rf5qExfj7q8pDw07FRfxQw3ibkR-PpIAMggNu4manvUY2af0dRP9sBJVU1SCmzSpRYXXYx"
+		}).then((res) => {
+			console.log("yelp search return",res.data);
+		})
+	}
 	this.getTownies();
 	this.goApp();
  	//console.log("Edit enabled on page load:", this.isEditEnabled);
