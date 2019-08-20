@@ -124,11 +124,16 @@ app.controller('AppController', ['$http', function($http){
 	this.isCompanySelected = false;
 	this.isFindTownieSelected = false;
 	this.isAddTownieSelected = false;
+
 	this.includePath = '';
-		this.changeInclude = () => {
-			this.includePath = 'partials/partials.html'
-			//'partials/'+ path +'.html';
+		this.changeInclude = (path) => {
+			this.includePath = 'partials/'+ path +'.html';
 		}
+
+	// this.includeNavPath = "";
+	// this.changeNavInclude= (path) => {
+	// 	this.includeNavPath = 'partials/partials/'+ path +'.html';
+	// }
 	this.createTownie = () => {
 		//console.log(this.name);
 		$http({
