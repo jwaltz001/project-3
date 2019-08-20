@@ -1,6 +1,14 @@
 const app = angular.module('MyApp', []);
-
-app.controller('AppController', ['$http', function($http, SharedValues){
+// app.config(function($httpProvider) {
+//       //Enable cross domain calls
+//       $httpProvider.defaults.useXDomain = true;
+//       //Remove the header used to identify ajax call  that would prevent CORS from working
+//       delete $httpProvider.defaults.headers.common['X-Requested-With'];
+//   });
+// app.config(['$httpProvider', function($httpProvider) {
+//   $httpProvider.defaults.withCredentials = true;
+// }])
+app.controller('AppController', ['$http', function($http){
     const controller = this;
 	this.date = new Date().getTime();
 	/********************************
