@@ -66,11 +66,11 @@
 	            </div>
 	            <div class="mainimg"></div>
 	            <div class="mainboxes">
-	                <div class="box1" ng-click="ctrl.changeInclude('findtownie')">
+	                <div class="box1" ng-click="ctrl.changeInclude('findtownie'); ctrl.findatownie = true">
 	                    <h1 ng-style="box1" ng-click="box1={'color':'white'}; box2={'color':'#72befc'}; box3={'color':'#72befc'}">FIND A <br>TOWNIE</h1>
 	                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Semper risus in hendrerit gravida. Vitae elementum curabitur vitae nunc. Tempor orci dapibus ultrices in iaculis. Ornare aenean euismod elementum nisi quis eleifend quam adipiscing.</p>
 	                </div>
-	                <div class="box2" ng-click= "ctrl.changeInclude('addtownie')">
+	                <div class="box2" ng-click= "ctrl.changeInclude('addtownie'); ctrl.findatownie = false">
 	                    <h1 ng-style="box2" ng-click="box2={'color':'white'}; box1={'color':'#72befc'}; box3={'color':'#72befc'}">ADD A<br>TOWNIE</h1>
 	                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam purus sit amet luctus venenatis. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Duis at tellus at urna condimentum mattis pellentesque id nibh. Mattis aliquam faucibus purus in.</p>
 	                </div>
@@ -88,57 +88,69 @@
 
 					</div>
 
-	        <div>
+	        <div ng-show="ctrl.companyToShow">
+            <div id="map-search-panel">
+            <b> Your Address: </b>
+            <input type="text" id="start" value="{{ctrl.companyToShow.city}}">
+            <input type="hidden" id="end" value="{{ctrl.selectedCompanyAddress}}">
+            <button id="directions-btn" type="button" name="button">Get Directions</button>
+            </div>
+            <div id="map-directions-display">
+            <div id="map"></div>
+            <div id="right-panel"></div>
+            <button id="close-map-btn">Close Map</button>
+            </div>
+
 		  		</div>
 
 			</div>
         </div>
-      </div>
-</div>
+
 		<div class="footer">
 	        &copy; Copyright 2019 All Rights Reserved
 	    </div>
 <!-- Used Gooogle Tutorial, esp. on https://developers.google.com/maps/documentation/javascript/examples/directions-panel -->
-	<script>
-		function initMap() {
-			const directionsService = new google.maps.DirectionsService;
-			const directionsRenderer = new google.maps.DirectionsRenderer;
-			const map = new google.maps.Map(document.getElementById('map'), {
-				zoom: 7,
-				center: {lat: 41.85, lng: -87.65}
-			});
-			directionsRenderer.setMap(map);
-			directionsRenderer.setPanel(document.getElementById('right-panel'));
+<script>
+  function initMap() {
+    const directionsService = new google.maps.DirectionsService;
+    const directionsRenderer = new google.maps.DirectionsRenderer;
+    const map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 7,
+      center: {lat: 41.85, lng: -87.65}
+    });
+    directionsRenderer.setMap(map);
+    directionsRenderer.setPanel(document.getElementById('right-panel'));
 
-			const onChangeHandler = function() {
-				calculateAndDisplayRoute(directionsService, directionsRenderer);
-				document.getElementById("map-directions-display").style.display = "flex";
-				document.getElementById('close-map-btn').addEventListener('click',() => {
-					document.getElementById('map-directions-display').style.display = "none";
-				})
-			};
-			document.getElementById("directions-btn").removeEventListener("click", initMap);
-			document.getElementById('directions-btn').addEventListener('click', onChangeHandler);
-			onChangeHandler();
-			}
+    const onChangeHandler = function() {
+      calculateAndDisplayRoute(directionsService, directionsRenderer);
+      document.getElementById("map-directions-display").style.display = "flex";
+      document.getElementById('close-map-btn').addEventListener('click',() => {
+        document.getElementById('map-directions-display').style.display = "none";
+      })
+    };
+    document.getElementById("directions-btn").removeEventListener("click", initMap);
+    document.getElementById('directions-btn').addEventListener('click', onChangeHandler);
+    onChangeHandler();
+    }
 
-		function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-			directionsService.route(
-				{
-					origin: {query: document.getElementById('start').value},
-					destination: {query: document.getElementById('end').value},
-					travelMode: 'DRIVING'
-				},
-				function(response, status) {
-					if (status === 'OK') {
-						directionsRenderer.setDirections(response);
-					} else {
-						window.alert('Directions request failed due to ' + status);
-					}
-				});
-		}
-		document.getElementById('directions-btn').addEventListener('click', initMap);
-	</script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew" async defer></script>
+  function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+    directionsService.route(
+      {
+        origin: {query: document.getElementById('start').value},
+        destination: {query: document.getElementById('end').value},
+        travelMode: 'DRIVING'
+      },
+      function(response, status) {
+        if (status === 'OK') {
+          directionsRenderer.setDirections(response);
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
+  }
+  document.getElementById('directions-btn').addEventListener('click', initMap);
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew" async defer></script>
+
 	</body>
 </html>

@@ -22,20 +22,9 @@
 </div>
 <button ng-click="login={'display': 'block'}">Edit Company</button>
   <button ng-click="ctrl.deleteTownie(ctrl.companyToShow)">Delete Company</button>
-<div id="map-search-panel">
-<b> Your Address: </b>
-<input type="text" id="start" value="{{ctrl.companyToShow.city}}">
-<input type="hidden" id="end" value="{{ctrl.selectedCompanyAddress}}">
-<button id="directions-btn" type="button" name="button">Get Directions</button>
-</div>
-<div id="map-directions-display">
-<div id="map"></div>
-<div id="right-panel"></div>
-<button id="close-map-btn">Close Map</button>
-</div>
+
 <form>
-    <button id="back-btn" type="button" ng-click="ctrl.back()">Back to List</button>
-    <div ng-hide="isCompanySelected"></div>
+    <button id="back-btn" type="button" ng-click="ctrl.changeInclude('findtownie')">Back to List</button>
 </form>
 <div class="review-section">
 <h4>Used this Townie?</h4>
