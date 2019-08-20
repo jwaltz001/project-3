@@ -66,11 +66,11 @@
 	            </div>
 	            <div class="mainimg"></div>
 	            <div class="mainboxes">
-	                <div class="box1" ng-click="isFindTownieSelected = true; ifAddTownieSelected = false">
-	                    <h1 ng-style="box1" ng-click="box1={'color':'white'}; box2={'color':'#72befc'}; box3={'color':'#72befc'}" >FIND A <br>TOWNIE</h1>
+	                <div class="box1" ng-click="ctrl.changeInclude('findtownie'); ctrl.findatownie = true">
+	                    <h1 ng-style="box1" ng-click="box1={'color':'white'}; box2={'color':'#72befc'}; box3={'color':'#72befc'}">FIND A <br>TOWNIE</h1>
 	                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Semper risus in hendrerit gravida. Vitae elementum curabitur vitae nunc. Tempor orci dapibus ultrices in iaculis. Ornare aenean euismod elementum nisi quis eleifend quam adipiscing.</p>
 	                </div>
-	                <div class="box2" ng-click="isAddTownieSelected = true">
+	                <div class="box2" ng-click= "ctrl.changeInclude('addtownie'); ctrl.findatownie = false">
 	                    <h1 ng-style="box2" ng-click="box2={'color':'white'}; box1={'color':'#72befc'}; box3={'color':'#72befc'}">ADD A<br>TOWNIE</h1>
 	                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam purus sit amet luctus venenatis. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Duis at tellus at urna condimentum mattis pellentesque id nibh. Mattis aliquam faucibus purus in.</p>
 	                </div>
@@ -82,180 +82,75 @@
 	        </div>
         <!-- AFTER LOGIN -->
 		    <div id="main-townie-display" ng-show="ctrl.loggedInUsername">
-	        	<div ng-hide="ctrl.isCompanySelected">
+	        	<!-- <div ng-hide="ctrl.isCompanySelected"> -->
 					<!-- <h4>Know a Townie you Trust?</h4> -->
+					<div ng-include="ctrl.includePath">
 
-					<fieldset ng-show="isAddTownieSelected">
-						<legend>Add Them Here</legend>
-						<form ng-submit="ctrl.createTownie()">
-							<input type="text" ng-model="ctrl.name" placeholder="Company Name"/>
-							<input type="text" ng-model="ctrl.streetAddress" placeholder="Street Address"/>
-							<input type="text" ng-model="ctrl.city" placeholder="City"/>
-							<input type="text" ng-model="ctrl.state" placeholder="State"/>
-							<input type="text" ng-model="ctrl.zipcode" placeholder="Zipcode"/>
-							<textarea ng-model="ctrl.description" placeholder="description"></textarea>
-							<input type="submit" value="Create New Townie"/>
-						</form>
-					</fieldset>
-					<div ng-show="isFindTownieSelected">
-            Search for their info:
-  					<form ng-submit="ctrl.searchYelp()">
-  						<input type="text" ng-model="ctrl.yelpSearchName" placeholder="Name">
-  						<input type="text" ng-model="ctrl.yelpSearchCity" placeholder="City">
-  						<input type="text" ng-model="ctrl.yelpSearchState" placeholder="State">
-  						<input type="submit" value="search">
-  					</form>
-					    Search Company Name:<input ng-model="searchBox.name" type="text" placeholder="Enter a Name">
-					    Search By City:<input ng-model="searchBox.city" type="text" placeholder="Enter a City">
-						Search By State:
-						<select
-							ng-options= "state for state in ctrl.allStatesList()"
-							ng-model="searchBox.state">
-							<option ng-click="ctrl.getTownies()" value=""> Choose State </option>
-						</select>
-						<!--
-						<select
-							ng-options= "company as company.state for company in ctrl.companies"
-							ng-model="searchBox.state">
-							<option value=""> Choose State </option>
-						</select>
-						Search By State:<input ng-model="searchBox.state" type="text" placeholder="Enter a State"><br /><br /> -->
-					    <table id="all-townies-table">
-					        <tr>
-								<th>Company Name</th>
-								<th>City</th>
-								<th>State</th>
-								<th>Description</th>
-							</tr>
-					        <tr
-								class="townie-table-row"
-								ng-repeat="companies in ctrl.companies | filter : searchBox"
-	              ng-repeat= "state in ctrl.allStatesList() | filter: searchBox"
-								ng-click="ctrl.showTownie(companies)">
-					            <td>{{companies.name}}</td>
-					            <td>{{companies.city}}</td>
-					            <td>{{companies.state}}</td>
-					            <td>{{companies.description}}</td>
-					        </tr>
-					    </table>
-	            	</div>
-	        	<div ng-show="ctrl.isCompanySelected">
-					<h3>{{ctrl.companyToShow.name}}</h3>
-					<div class="approval-div">
-						<div class="selected-approve-ribbon"></div>
-					  	<p>This Townie has {{ctrl.companyToShow.endorsements}} seals of approval from our users.</p>
 					</div>
-	      			<div id="loginModal" class="modal" ng-style="login">
-		  	            <div class="modal-content">
-		  					<div class="modal-body">
-								<form ng-submit="ctrl.editTownie(ctrl.companyToShow)">
-					  				<input type="text" ng-model="ctrl.editedName" placeholder="Company Name" value="{{ctrl.companyToShow.name}}"/>
-									<input type="text" ng-model="ctrl.editedStreetAddress" placeholder="Street Address" value="{{ctrl.companyToShow.streetAddress}}"/>
-									<input type="text" ng-model="ctrl.editedCity" placeholder="City" value="{{ctrl.companyToShow.city}}"/>
-									<input type="text" ng-model="ctrl.editedState" placeholder="State" value="{{ctrl.companyToShow.state}}"/>
-									<input type="text" ng-model="ctrl.editedZipcode" placeholder="Zipcode" value="{{ctrl.companyToShow.zipcode}}"/>
-									<textarea ng-model="ctrl.editedDescription" placeholder="description" value="{{ctrl.companyToShow.description}}"></textarea>
-									<input type="submit" value="Save Changes" ng-click="login={}">
-			            		</form>
-		            			<div class="modal-background"></div>
-	            			</div>
-	          			</div>
-	        		</div>
-					<button ng-click="login={'display': 'block'}">Edit Company</button>
-	          		<button ng-click="ctrl.deleteTownie(ctrl.companyToShow)">Delete Company</button>
-					<div id="map-search-panel">
-						<b> Your Address: </b>
-						<input type="text" id="start" value="{{ctrl.companyToShow.city}}">
-						<input type="hidden" id="end" value="{{ctrl.selectedCompanyAddress}}">
-						<button id="directions-btn" type="button" name="button">Get Directions</button>
-					</div>
-					<div id="map-directions-display">
-						<div id="map"></div>
-						<div id="right-panel"></div>
-						<button id="close-map-btn">Close Map</button>
-					</div>
-		        	<form>
-			            <button id="back-btn" type="button" ng-click="ctrl.back()">Back to List</button>
-			            <div ng-hide="isCompanySelected"></div>
-		        	</form>
-			  		<div class="review-section">
-						<h4>Used this Townie?</h4>
-						<div class="approval-div">
-							<h5>Give them your seal of Approval:</h5>
-					  		<div
-					  			ng-class="(ctrl.isApprovedHover || ctrl.isApproved) ? 'selected-approve-ribbon' : 'approve-ribbon'"
-								ng-click="ctrl.approveRibbonSelect(ctrl.companyToShow)"
-								ng-mouseenter="ctrl.approveRibbonHover()"
-								ng-mouseleave="ctrl.approveRibbonHover()">
-							</div>
-				  		</div>
-						<fieldset>
-							<legend><h5>Write a New Review</h5></legend>
-							<form ng-submit="ctrl.publishNewReview(ctrl.companyToShow._id)">
-								Trusty Townie Rating (0 to 5): <input type="number" ng-model="ctrl.newRating" min="0" max="5">
-								Review:<textarea ng-model="ctrl.newReview" rows="8" cols="80"></textarea>
-								<input type="submit" value="Submit Review">
-							</form>
-						</fieldset>
-				  		<div class="user-reviews">
-							<h4>Reviews for {{ctrl.companyToShow.name}}</h4>
-							<article ng-repeat="review in ctrl.companyToShow.reviews | orderBy: '-date'">
-							  	<h6>Trusty Townie Rating: {{review.rating}}</h6>
-								<i>Reviewed on: {{ review.date | date:'MM/dd/yyyy @ h:mm:ssa'}}</i>
-								<p>{{review.comments}}</p>
-							</article>
-						</div>
-			  		</div>
+
+	        <div ng-show="ctrl.companyToShow">
+            <div id="map-search-panel">
+            <b> Your Address: </b>
+            <input type="text" id="start" value="{{ctrl.companyToShow.city}}">
+            <input type="hidden" id="end" value="{{ctrl.selectedCompanyAddress}}">
+            <button id="directions-btn" type="button" name="button">Get Directions</button>
+            </div>
+            <div id="map-directions-display">
+            <div id="map"></div>
+            <div id="right-panel"></div>
+            <button id="close-map-btn">Close Map</button>
+            </div>
+
 		  		</div>
+
 			</div>
         </div>
-        </div>
-      </div>
-</div>
+
 		<div class="footer">
 	        &copy; Copyright 2019 All Rights Reserved
 	    </div>
 <!-- Used Gooogle Tutorial, esp. on https://developers.google.com/maps/documentation/javascript/examples/directions-panel -->
-	<script>
-		function initMap() {
-			const directionsService = new google.maps.DirectionsService;
-			const directionsRenderer = new google.maps.DirectionsRenderer;
-			const map = new google.maps.Map(document.getElementById('map'), {
-				zoom: 7,
-				center: {lat: 41.85, lng: -87.65}
-			});
-			directionsRenderer.setMap(map);
-			directionsRenderer.setPanel(document.getElementById('right-panel'));
+<script>
+  function initMap() {
+    const directionsService = new google.maps.DirectionsService;
+    const directionsRenderer = new google.maps.DirectionsRenderer;
+    const map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 7,
+      center: {lat: 41.85, lng: -87.65}
+    });
+    directionsRenderer.setMap(map);
+    directionsRenderer.setPanel(document.getElementById('right-panel'));
 
-			const onChangeHandler = function() {
-				calculateAndDisplayRoute(directionsService, directionsRenderer);
-				document.getElementById("map-directions-display").style.display = "flex";
-				document.getElementById('close-map-btn').addEventListener('click',() => {
-					document.getElementById('map-directions-display').style.display = "none";
-				})
-			};
-			document.getElementById("directions-btn").removeEventListener("click", initMap);
-			document.getElementById('directions-btn').addEventListener('click', onChangeHandler);
-			onChangeHandler();
-			}
+    const onChangeHandler = function() {
+      calculateAndDisplayRoute(directionsService, directionsRenderer);
+      document.getElementById("map-directions-display").style.display = "flex";
+      document.getElementById('close-map-btn').addEventListener('click',() => {
+        document.getElementById('map-directions-display').style.display = "none";
+      })
+    };
+    document.getElementById("directions-btn").removeEventListener("click", initMap);
+    document.getElementById('directions-btn').addEventListener('click', onChangeHandler);
+    onChangeHandler();
+    }
 
-		function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-			directionsService.route(
-				{
-					origin: {query: document.getElementById('start').value},
-					destination: {query: document.getElementById('end').value},
-					travelMode: 'DRIVING'
-				},
-				function(response, status) {
-					if (status === 'OK') {
-						directionsRenderer.setDirections(response);
-					} else {
-						window.alert('Directions request failed due to ' + status);
-					}
-				});
-		}
-		document.getElementById('directions-btn').addEventListener('click', initMap);
-	</script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew" async defer></script>
+  function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+    directionsService.route(
+      {
+        origin: {query: document.getElementById('start').value},
+        destination: {query: document.getElementById('end').value},
+        travelMode: 'DRIVING'
+      },
+      function(response, status) {
+        if (status === 'OK') {
+          directionsRenderer.setDirections(response);
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
+  }
+  document.getElementById('directions-btn').addEventListener('click', initMap);
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew" async defer></script>
+
 	</body>
 </html>

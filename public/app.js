@@ -8,6 +8,9 @@ const app = angular.module('MyApp', []);
 // app.config(['$httpProvider', function($httpProvider) {
 //   $httpProvider.defaults.withCredentials = true;
 // }])
+
+
+
 app.controller('AppController', ['$http', function($http){
     const controller = this;
 	this.date = new Date().getTime();
@@ -119,11 +122,18 @@ app.controller('AppController', ['$http', function($http){
 	 *                                  *
 	 ************************************/
 	this.isCompanySelected = false;
-  this.isFindTownieSelected = false;
-  this.isAddTownieSelected = false;
-	this.searchForNewCompany = () => {
-		console.log("works");
-	}
+	this.isFindTownieSelected = false;
+	this.isAddTownieSelected = false;
+
+	this.includePath = '';
+		this.changeInclude = (path) => {
+			this.includePath = 'partials/'+ path +'.html';
+		}
+
+	// this.includeNavPath = "";
+	// this.changeNavInclude= (path) => {
+	// 	this.includeNavPath = 'partials/partials/'+ path +'.html';
+	// }
 	this.createTownie = () => {
 		//console.log(this.name);
 		$http({
@@ -162,6 +172,7 @@ app.controller('AppController', ['$http', function($http){
 			console.log(this.selectedCompanyAddress);
 			this.isCompanySelected = true;
 			console.log("Edit enabled on showTownie", this.isEditEnabled);
+
 			})
 	}
 	//this.isEditEnabled = true;
@@ -282,8 +293,11 @@ app.controller('AppController', ['$http', function($http){
 	this.searchYelp = () => {
 		$http({
 			method: "GET",
-			url: "https://api.yelp.com/v3/businesses/search?limit=10&term=" + this.yelpSearchName + "&location=" + this.yelpSearchCity + this.yelpSearchState,
-			Authorization: "Bearer nSZt3_3hdEoT09d9VuVMUbkQUz7JIViAKxl_DLMSpwmuMkD6CWPhaOOA62rf5qExfj7q8pDw07FRfxQw3ibkR-PpIAMggNu4manvUY2af0dRP9sBJVU1SCmzSpRYXXYx"
+			url: "/yelp",
+			data:{
+				apiUrl:"https://api.yelp.com/v3/businesses/search?limit=10&term=" + this.yelpSearchName + "&location=" +this.yelpSearchCity + this.yelpSearchState,
+				Authorization: "Bearer nSZt3_3hdEoT09d9VuVMUbkQUz7JIViAKxl_DLMSpwmuMkD6CWPhaOOA62rf5qExfj7q8pDw07FRfxQw3ibkR-PpIAMggNu4manvUY2af0dRP9sBJVU1SCmzSpRYXXYx"
+		}
 		}).then((res) => {
 			console.log("yelp search return",res.data);
 		})
