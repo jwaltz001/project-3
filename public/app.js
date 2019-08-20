@@ -8,6 +8,9 @@ const app = angular.module('MyApp', []);
 // app.config(['$httpProvider', function($httpProvider) {
 //   $httpProvider.defaults.withCredentials = true;
 // }])
+
+
+
 app.controller('AppController', ['$http', function($http){
     const controller = this;
 	this.date = new Date().getTime();
@@ -119,11 +122,13 @@ app.controller('AppController', ['$http', function($http){
 	 *                                  *
 	 ************************************/
 	this.isCompanySelected = false;
-  this.isFindTownieSelected = false;
-  this.isAddTownieSelected = false;
-	this.searchForNewCompany = () => {
-		console.log("works");
-	}
+	this.isFindTownieSelected = false;
+	this.isAddTownieSelected = false;
+	this.includePath = '';
+		this.changeInclude = () => {
+			this.includePath = 'partials/partials.html'
+			//'partials/'+ path +'.html';
+		}
 	this.createTownie = () => {
 		//console.log(this.name);
 		$http({
@@ -162,6 +167,7 @@ app.controller('AppController', ['$http', function($http){
 			console.log(this.selectedCompanyAddress);
 			this.isCompanySelected = true;
 			console.log("Edit enabled on showTownie", this.isEditEnabled);
+
 			})
 	}
 	//this.isEditEnabled = true;

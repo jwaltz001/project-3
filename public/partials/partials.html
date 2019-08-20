@@ -1,0 +1,66 @@
+
+<h3>{{ctrl.companyToShow.name}}</h3>
+<div class="approval-div">
+<div class="selected-approve-ribbon"></div>
+<p>This Townie has {{ctrl.companyToShow.endorsements}} seals of approval from our users.</p>
+</div>
+<div id="loginModal" class="modal" ng-style="login">
+      <div class="modal-content">
+  <div class="modal-body">
+  <form ng-submit="ctrl.editTownie(ctrl.companyToShow)">
+      <input type="text" ng-model="ctrl.editedName" placeholder="Company Name" value="{{ctrl.companyToShow.name}}"/>
+    <input type="text" ng-model="ctrl.editedStreetAddress" placeholder="Street Address" value="{{ctrl.companyToShow.streetAddress}}"/>
+    <input type="text" ng-model="ctrl.editedCity" placeholder="City" value="{{ctrl.companyToShow.city}}"/>
+    <input type="text" ng-model="ctrl.editedState" placeholder="State" value="{{ctrl.companyToShow.state}}"/>
+    <input type="text" ng-model="ctrl.editedZipcode" placeholder="Zipcode" value="{{ctrl.companyToShow.zipcode}}"/>
+    <textarea ng-model="ctrl.editedDescription" placeholder="description" value="{{ctrl.companyToShow.description}}"></textarea>
+    <input type="submit" value="Save Changes" ng-click="login={}">
+        </form>
+        <div class="modal-background"></div>
+      </div>
+    </div>
+</div>
+<button ng-click="login={'display': 'block'}">Edit Company</button>
+  <button ng-click="ctrl.deleteTownie(ctrl.companyToShow)">Delete Company</button>
+<div id="map-search-panel">
+<b> Your Address: </b>
+<input type="text" id="start" value="{{ctrl.companyToShow.city}}">
+<input type="hidden" id="end" value="{{ctrl.selectedCompanyAddress}}">
+<button id="directions-btn" type="button" name="button">Get Directions</button>
+</div>
+<div id="map-directions-display">
+<div id="map"></div>
+<div id="right-panel"></div>
+<button id="close-map-btn">Close Map</button>
+</div>
+<form>
+    <button id="back-btn" type="button" ng-click="ctrl.back()">Back to List</button>
+    <div ng-hide="isCompanySelected"></div>
+</form>
+<div class="review-section">
+<h4>Used this Townie?</h4>
+<div class="approval-div">
+<h5>Give them your seal of Approval:</h5>
+  <div
+    ng-class="(ctrl.isApprovedHover || ctrl.isApproved) ? 'selected-approve-ribbon' : 'approve-ribbon'"
+  ng-click="ctrl.approveRibbonSelect(ctrl.companyToShow)"
+  ng-mouseenter="ctrl.approveRibbonHover()"
+  ng-mouseleave="ctrl.approveRibbonHover()">
+</div>
+</div>
+<fieldset>
+<legend><h5>Write a New Review</h5></legend>
+<form ng-submit="ctrl.publishNewReview(ctrl.companyToShow._id)">
+  Trusty Townie Rating (0 to 5): <input type="number" ng-model="ctrl.newRating" min="0" max="5">
+  Review:<textarea ng-model="ctrl.newReview" rows="8" cols="80"></textarea>
+  <input type="submit" value="Submit Review">
+</form>
+</fieldset>
+<div class="user-reviews">
+<h4>Reviews for {{ctrl.companyToShow.name}}</h4>
+<article ng-repeat="review in ctrl.companyToShow.reviews | orderBy: '-date'">
+    <h6>Trusty Townie Rating: {{review.rating}}</h6>
+  <i>Reviewed on: {{ review.date | date:'MM/dd/yyyy @ h:mm:ssa'}}</i>
+  <p>{{review.comments}}</p>
+</article>
+</div>
