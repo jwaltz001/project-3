@@ -51,6 +51,12 @@ router.get("/:id", (req, res) => {
   })
 })
 
+// router.get('/show/:id', (req, res)=>{
+//   Townies.findById(req.params.id, (error, showtownie) => {
+//  res.render('/public/index.html')
+// })
+// })
+
 //Update
 router.put("/:id", (req, res) => {
 	console.log("Edit Route 2 (id in route of company to edit):", req.params.id);
