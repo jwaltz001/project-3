@@ -168,8 +168,6 @@ app.controller('AppController', ['$http', function($http){
 		}).then((res) => {
 			console.log("Townie to show 3 (res):", res);
 			this.companyToShow = res.data
-			this.selectedCompanyAddress = res.data.streetAddress + ", " + res.data.city + ", " + res.data.state + " " + res.data.zipcode
-			console.log(this.selectedCompanyAddress);
 			this.isCompanySelected = true;
 			console.log("Edit enabled on showTownie", this.isEditEnabled);
 
