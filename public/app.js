@@ -90,11 +90,37 @@ app.controller('AppController', ['$http', function($http){
         );
     };
 
+    // this.findTownie = function(){
+    //   $http({
+    //       method:'GET',
+    //       url:'/app'
+    //   }).then((res) => {
+    //     // init showForm to false;
+    //     this.findTownie = false;
+    //
+    //     // init empty user object for our form
+    //     $scope.user = {};
+    //
+    //     $scope.submitForm = function() {
+    //       // logic when the form is submitted
+    //       //...
+    //
+    //       // reset the user
+    //       $scope.user = {};
+    //
+    //       // finally hide the form
+    //       $scope.showForm = false;
+    //     };
+    //
+    //   }
+    // ]);
 	/************************************
 	 *     COMPANY/TOWNIE FUNCTIONS     *
 	 *                                  *
 	 ************************************/
 	this.isCompanySelected = false;
+  this.isFindTownieSelected = false;
+  this.isAddTownieSelected = false;
 	this.searchForNewCompany = () => {
 		console.log("works");
 	}
@@ -187,6 +213,7 @@ app.controller('AppController', ['$http', function($http){
 	      this.isCompanySelected = true;
 	    }
 	  }
+
 
   // this.reset = function () {
   //   this.searchBox = {state: allStatesList()};
