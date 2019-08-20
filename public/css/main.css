@@ -153,6 +153,27 @@ nav > div > h3 {
 	text-align: center;
 }
 
+.mainbtns {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin: 20px;
+}
+
+.mainbtns > button {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	color: #40454d;
+	border: 1px #40454d solid;
+	border-radius: 0px;
+	margin: 20px;
+}
+
+.mainbtns > button:hover {
+	border: 1px white solid;
+	color: white;
+}
 /* .mainboxes > div > h1:hover {
 	text-decoration: underline;
 } */
