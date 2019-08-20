@@ -15,6 +15,7 @@ router.post("/", (req,res) => {
 //New User Review
 router.patch('/userreviews/:companyid', (req,res) => {
 	console.log("review route 2 (company id in params):", req.params.companyid);
+	console.log("2.5 comments", req.body.comments);
 	const newReview = {
 		authorId: req.session.currentUser._id,
 		rating: req.body.rating,
