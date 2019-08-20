@@ -3,11 +3,12 @@
     <head>
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"></script>
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap" rel="stylesheet">
+		<script src="app.js" charset="utf-8"></script>
+		<script src="map.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-		<script src="app.js" charset="utf-8"></script>
 		<link rel="stylesheet" href="/css/normalize.css">
 		<link rel="stylesheet" href="/css/skeleton.css">
 		<link rel="stylesheet" href="/css/main.css">
@@ -111,7 +112,6 @@
 
 			</div>
         </div>
-
 		<div class="footer">
 	        &copy; Copyright 2019 All Rights Reserved
 	    </div>
@@ -154,7 +154,8 @@
   }
   document.getElementById('directions-btn').addEventListener('click', initMap);
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew" async defer></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew" async defer></script> -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew&libraries=places"></script>
 
 	</body>
 </html>
