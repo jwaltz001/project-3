@@ -228,6 +228,7 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 	}
 	this.publishNewReview = (companyToShowId) => {
 		console.log("review route 1 (company id):", companyToShowId);
+		console.log("review route 1 (company id):", companyToShowId);
 		$http({
 			method: "PATCH",
 			url: "/business/userreviews/" + companyToShowId,
