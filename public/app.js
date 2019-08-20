@@ -159,25 +159,26 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 			this.getTownies()
 		})
 	}
-this.deleteTownie = function(companyToShow) {
-  console.log("delet route" + companyToShow);
-  $http({
-    method: 'DELETE',
-    url: '/business/' + companyToShow._id
-  }).then((res) => {
-    console.log(res.data);
-    this.getTownies();
-    this.companyToShow = null;
-    this.isCompanySelected = false;
-  })
-}
 
-  this.back = () => {
-    this.isCompanySelected = false;
-    this.back = function () {
-      this.isCompanySelected = true;
-    }
-  }
+	this.deleteTownie = function(companyToShow) {
+	  console.log("delet route" + companyToShow);
+	  $http({
+	    method: 'DELETE',
+	    url: '/business/' + companyToShow._id
+	  }).then((res) => {
+	    console.log(res.data);
+	    this.getTownies();
+	    this.companyToShow = null;
+	    this.isCompanySelected = false;
+	  })
+	}
+
+	  this.back = () => {
+	    this.isCompanySelected = false;
+	    this.back = function () {
+	      this.isCompanySelected = true;
+	    }
+	  }
 
   // this.reset = function () {
   //   this.searchBox = {state: allStatesList()};

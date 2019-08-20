@@ -159,11 +159,9 @@
           </div>
         </div>
 					<button ng-click="login={'display': 'block'}">Edit Company</button>
-
           <button ng-click="ctrl.deleteTownie(ctrl.companyToShow)">Delete Company</button>
-
 						<div id="map-search-panel">
-							<b>Your Address:</b>
+							<b> Your Address: </b>
 							<input type="text" id="start" value="{{ctrl.companyToShow.city}}">
 							<input type="hidden" id="end" value="{{ctrl.selectedCompanyAddress}}">
 							<button id="directions-btn" type="button" name="button">Get Directions</button>
@@ -228,6 +226,7 @@
 
 			const onChangeHandler = function() {
 				calculateAndDisplayRoute(directionsService, directionsRenderer);
+				document.getElementById("map").style.display = "block";
 			};
 			document.getElementById("directions-btn").removeEventListener("click", initMap);
 			document.getElementById('directions-btn').addEventListener('click', onChangeHandler);

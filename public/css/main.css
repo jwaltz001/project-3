@@ -200,13 +200,18 @@ body {
  * Map Styling *
  *             *
  ***************/
-#map-directions-display{
+#map-directions-display {
 	display: flex;
+	flex-flow: column;
+	align-items: center;
 }
+
 #map {
 	height: 500px;
 	width: 750px;
+	display: none;
 }
+
 #right-panel {
 	font-family: 'Roboto','sans-serif';
 	line-height: 30px;
@@ -228,7 +233,6 @@ body {
 #right-panel i {
 	font-size: 12px;
 }
-
 
 /***************
  *  Like Btn   *
