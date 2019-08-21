@@ -1,6 +1,17 @@
 const app = angular.module('MyApp', []);
+// app.config(function($httpProvider) {
+//       //Enable cross domain calls
+//       $httpProvider.defaults.useXDomain = true;
+//       //Remove the header used to identify ajax call  that would prevent CORS from working
+//       delete $httpProvider.defaults.headers.common['X-Requested-With'];
+//   });
+// app.config(['$httpProvider', function($httpProvider) {
+//   $httpProvider.defaults.withCredentials = true;
+// }])
 
-app.controller('AppController', ['$http', function($http, SharedValues){
+
+
+app.controller('AppController', ['$http', function($http){
     const controller = this;
 	this.date = new Date().getTime();
 	/********************************
@@ -82,14 +93,47 @@ app.controller('AppController', ['$http', function($http, SharedValues){
         );
     };
 
+    // this.findTownie = function(){
+    //   $http({
+    //       method:'GET',
+    //       url:'/app'
+    //   }).then((res) => {
+    //     // init showForm to false;
+    //     this.findTownie = false;
+    //
+    //     // init empty user object for our form
+    //     $scope.user = {};
+    //
+    //     $scope.submitForm = function() {
+    //       // logic when the form is submitted
+    //       //...
+    //
+    //       // reset the user
+    //       $scope.user = {};
+    //
+    //       // finally hide the form
+    //       $scope.showForm = false;
+    //     };
+    //
+    //   }
+    // ]);
 	/************************************
 	 *     COMPANY/TOWNIE FUNCTIONS     *
 	 *                                  *
 	 ************************************/
 	this.isCompanySelected = false;
-	this.searchForNewCompany = () => {
-		console.log("works");
-	}
+	this.isFindTownieSelected = false;
+	this.isAddTownieSelected = false;
+
+	this.includePath = '';
+		this.changeInclude = (path) => {
+			this.includePath = 'partials/'+ path +'.html';
+		}
+
+	// this.includeNavPath = "";
+	// this.changeNavInclude= (path) => {
+	// 	this.includeNavPath = 'partials/partials/'+ path +'.html';
+	// }
 	this.createTownie = () => {
 		//console.log(this.name);
 		$http({
@@ -124,10 +168,9 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 		}).then((res) => {
 			console.log("Townie to show 3 (res):", res);
 			this.companyToShow = res.data
-			this.selectedCompanyAddress = res.data.streetAddress + ", " + res.data.city + ", " + res.data.state + " " + res.data.zipcode
-			console.log(this.selectedCompanyAddress);
 			this.isCompanySelected = true;
 			console.log("Edit enabled on showTownie", this.isEditEnabled);
+
 			})
 	}
 	//this.isEditEnabled = true;
@@ -179,6 +222,7 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 	      this.isCompanySelected = true;
 	    }
 	  }
+
 
   // this.reset = function () {
   //   this.searchBox = {state: allStatesList()};
@@ -247,8 +291,11 @@ app.controller('AppController', ['$http', function($http, SharedValues){
 	this.searchYelp = () => {
 		$http({
 			method: "GET",
-			url: "https://api.yelp.com/v3/businesses/search?limit=10&term=" + this.yelpSearchName + "&location=" + this.yelpSearchCity + this.yelpSearchState,
-			Authorization: "Bearer nSZt3_3hdEoT09d9VuVMUbkQUz7JIViAKxl_DLMSpwmuMkD6CWPhaOOA62rf5qExfj7q8pDw07FRfxQw3ibkR-PpIAMggNu4manvUY2af0dRP9sBJVU1SCmzSpRYXXYx"
+			url: "/yelp",
+			data:{
+				apiUrl:"https://api.yelp.com/v3/businesses/search?limit=10&term=" + this.yelpSearchName + "&location=" +this.yelpSearchCity + this.yelpSearchState,
+				Authorization: "Bearer nSZt3_3hdEoT09d9VuVMUbkQUz7JIViAKxl_DLMSpwmuMkD6CWPhaOOA62rf5qExfj7q8pDw07FRfxQw3ibkR-PpIAMggNu4manvUY2af0dRP9sBJVU1SCmzSpRYXXYx"
+		}
 		}).then((res) => {
 			console.log("yelp search return",res.data);
 		})

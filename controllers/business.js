@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Townies = require("../models/companies.js");
 
-
 ///////////////////////ROUTES////////////////////////////
 
 //Create
@@ -51,6 +50,12 @@ router.get("/:id", (req, res) => {
     res.json(showtownie)
   })
 })
+
+// router.get('/show/:id', (req, res)=>{
+//   Townies.findById(req.params.id, (error, showtownie) => {
+//  res.render('/public/index.html')
+// })
+// })
 
 //Update
 router.put("/:id", (req, res) => {

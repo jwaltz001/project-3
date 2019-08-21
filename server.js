@@ -6,6 +6,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
 require('dotenv').config();
+const https = require('https');
 const app = express();
 const PORT = process.env.PORT;
 
@@ -26,11 +27,6 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
 
 /////////////routes????//////
 app.get('/app', (req, res)=>{
@@ -46,6 +42,7 @@ app.get('/app', (req, res)=>{
         });
     }
 });
+
 
 /************
  * Database *
@@ -71,3 +68,40 @@ app.use("/sessions", sessionController);
  *          *
  ************/
 app.listen(PORT, () => console.log( 'Listening on port:', PORT));
+
+
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
+//
+// app.all('/*', function (request, response, next) {
+// 	  response.header("Access-Control-Allow-Origin", "*");
+// 	  response.header("Access-Control-Allow-Headers", "X-Requested-With");
+// 	  response.header("Access-Control-Allow-Methods", "GET, POST", "PUT", "DELETE");
+// 	  next();
+//   });
+// app.get("/yelp", (req,res) => {
+// 	//req.data.url
+// 	console.log(req.headers);
+// 	console.log(req.data.Authorization);
+// request.header('Authorization', 'Bearer nSZt3_3hdEoT09d9VuVMUbkQUz7JIViAKxl_DLMSpwmuMkD6CWPhaOOA62rf5qExfj7q8pDw07FRfxQw3ibkR-PpIAMggNu4manvUY2af0dRP9sBJVU1SCmzSpRYXXYx');
+//
+// 	https.get('https://api.yelp.com/v3/businesses/search?limit=10&term=marcos&location=springtx',  (res) => {
+// 		let data = '';
+//
+// 		// A chunk of data has been recieved.
+// 		res.on('data', (chunk) => {
+// 			data += chunk;
+// 		});
+//
+// 		// The whole response has been received. Print out the result.
+// 		res.on('end', () => {
+// 			console.log(JSON.parse(data).explanation);
+// 		});
+//
+// 	}).on("error", (err) => {
+// 		console.log("Error: " + err.message);
+// 	});
+// })

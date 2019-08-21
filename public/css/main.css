@@ -1,6 +1,8 @@
 /* * {
 	border: solid red 1px;
 } */
+
+/* MODAL START */
 .modal {
 	display: none;
 	position: fixed;
@@ -32,18 +34,17 @@
 	flex-direction: column;
 	width: 35%;
 }
-
 .modal-body > h3 {
 	font-family: 'Luckiest Guy', cursive;
 	letter-spacing: 1px;
 	color: #40454d;
 }
-
 .modal-footer {
 	display:flex;
 	flex-direction: row-reverse;
 	padding: 1em 1em 0 1em;
 }
+/* MODAL END */
 h3:hover {
 	color: #40454d;
 }
@@ -153,9 +154,30 @@ nav > div > h3 {
 	text-align: center;
 }
 
-.mainboxes > div > h1:hover {
-	text-decoration: underline;
+.mainbtns {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin: 20px;
 }
+
+.mainbtns > button {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	color: #40454d;
+	border: 1px #40454d solid;
+	border-radius: 0px;
+	margin: 20px;
+}
+
+.mainbtns > button:hover {
+	border: 1px white solid;
+	color: white;
+}
+/* .mainboxes > div > h1:hover {
+	text-decoration: underline;
+} */
 
 .mainboxes > div > p {
 	color: whitesmoke;
@@ -177,6 +199,92 @@ nav > div > h3 {
 	height: 40px;
 }
 
+/* FIND TOWNIE PARTIAL START */
+.top-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding-top: 20px;
+}
+.top-container > div {
+	color: white;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	text-transform: uppercase;
+	display: flex;
+	flex-direction: column;
+}
+.top-container > div > input {
+	color: black;
+}
+.top-container > div > select {
+	color: black;
+}
+.main-container-find {
+	background-color: #40454d;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.bottom-container > table {
+	width: 90%;
+	color: white;
+	margin: 40px;
+}
+
+
+/* FIND TOWNIE PARTIAL END */
+
+/* ADD TOWNIE PARTIAL START */
+.main-container {
+	background-color: #40454d;
+	width: 100%;
+}
+
+.partialbody {
+	margin: 20px;
+}
+
+.partialbody > form {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.partialbody > legend {
+	color: white;
+	padding: 5px;
+}
+
+.partialbody > input {
+	margin: 5px;
+}
+
+#submitaddnew {
+	background-color: rgba(255, 255, 255, 1);
+	color: #72befc;
+}
+
+#submitaddnew:hover {
+	color: #40454d;
+}
+
+.main-container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.small-container {
+	width: 50%;
+}
+
+#right-container > img {
+	width: 100%;
+
+	filter: grayscale();
+}
+/* ADD TOWNIE PARTIAL END */
 
 body {
 	width: 100%;
@@ -195,7 +303,34 @@ body {
 /* #map-search-panel{
 	background-color: rgba(255, 255, 255, .5);
 } */
-
+.user-reviews {
+	overflow: scroll;
+	height: 30em;
+	background: white;
+}
+article{
+	border-top: 1pt solid black;
+	border-bottom: 1pt solid black;
+	padding: .5em;
+}
+.reviewtext{
+	color: white;
+}
+.partialbody > form > div {
+	display: flex;
+	flex-direction: column;
+}
+.review-inputs-2 {
+	width: 100%;
+}
+.tallimg {
+	height: 100%;
+	width:auto;
+}
+#back-btn {
+	background: rgba(255, 255, 255, 1);
+	margin: .5em
+}
 /***************
  * Map Styling *
  *             *

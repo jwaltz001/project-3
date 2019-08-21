@@ -1,0 +1,32 @@
+<div class="main-container">
+<div id="left-container" class="small-container">
+<div class="partialbody">
+	<legend><h5>Write a New Review for {{ctrl.companyToShow.name}}</h5></legend>
+	<form ng-submit="ctrl.publishNewReview(ctrl.companyToShow._id)">
+		<div class="review-inputs-1">
+			<p class="reviewtext">Trusty Townie Rating (0 to 5):</p>
+			<input type="number" ng-model="ctrl.newRating" min="0" max="5"><br>
+		</div>
+		<div class="review-inputs-2">
+			<p class="reviewtext">Review:</p>
+			<textarea ng-model="ctrl.newReview" rows="8" cols="80"></textarea>
+			<input type="submit" id="submitaddnew" value="Submit Review">
+		</div>
+	</form>
+	<h4 class="reviewtext">Reviews for {{ctrl.companyToShow.name}}</h4>
+	<div class="user-reviews">
+	<article ng-repeat="review in ctrl.companyToShow.reviews | orderBy: '-date'">
+	    <h6>Trusty Townie Rating: {{review.rating}}</h6>
+		<p>{{review.comments}}</p>
+	  	<i>Reviewed on: {{ review.date | date:'MM/dd/yyyy @ h:mm:ssa'}}</i>
+
+	</article>
+	</div>
+	<button id="back-btn" type="button" ng-click="ctrl.changeInclude('showtownie'); ctrl.showMap = true">Go Back</button>
+</div>
+</div>
+
+<div id="right-container" class="small-container">
+	<img class="tallimg" src="../images/bike.jpg" alt="mechanic">
+</div>
+</div>

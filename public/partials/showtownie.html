@@ -1,0 +1,42 @@
+
+<h3>{{ctrl.companyToShow.name}}</h3>
+<div class="approval-div">
+<div class="selected-approve-ribbon"></div>
+<p>This Townie has {{ctrl.companyToShow.endorsements}} seals of approval from our users.</p>
+</div>
+<div id="loginModal" class="modal" ng-style="login">
+      <div class="modal-content">
+  <div class="modal-body">
+  <form ng-submit="ctrl.editTownie(ctrl.companyToShow)">
+      <input type="text" ng-model="ctrl.editedName" placeholder="Company Name" value="{{ctrl.companyToShow.name}}"/>
+    <input type="text" ng-model="ctrl.editedStreetAddress" placeholder="Street Address" value="{{ctrl.companyToShow.streetAddress}}"/>
+    <input type="text" ng-model="ctrl.editedCity" placeholder="City" value="{{ctrl.companyToShow.city}}"/>
+    <input type="text" ng-model="ctrl.editedState" placeholder="State" value="{{ctrl.companyToShow.state}}"/>
+    <input type="text" ng-model="ctrl.editedZipcode" placeholder="Zipcode" value="{{ctrl.companyToShow.zipcode}}"/>
+    <textarea ng-model="ctrl.editedDescription" placeholder="description" value="{{ctrl.companyToShow.description}}"></textarea>
+    <input type="submit" value="Save Changes" ng-click="login={}">
+        </form>
+        <div class="modal-background"></div>
+      </div>
+    </div>
+</div>
+<button ng-click="login={'display': 'block'}">Update This Townie</button>
+  <button ng-click="ctrl.deleteTownie(ctrl.companyToShow)">Delete This Townie</button>
+
+<form>
+    <button id="back-btn" type="button" ng-click="ctrl.changeInclude('findtownie'); ctrl.showMap = false">Back to List</button>
+</form>
+<div class="review-section">
+<h4>Used this Townie?</h4>
+<div class="approval-div">
+<h5>Give them your seal of Approval:</h5>
+  <div
+    ng-class="(ctrl.isApprovedHover || ctrl.isApproved) ? 'selected-approve-ribbon' : 'approve-ribbon'"
+    ng-click="ctrl.approveRibbonSelect(ctrl.companyToShow)"
+    ng-mouseenter="ctrl.approveRibbonHover()"
+    ng-mouseleave="ctrl.approveRibbonHover()">
+</div>
+</div>
+<fieldset>
+
+  <button ng-click="ctrl.changeInclude('writeReview'); ctrl.showMap = false" >Write Review</button>

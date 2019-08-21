@@ -1,0 +1,40 @@
+<div class="main-container-find">
+	<div class="top-container">
+	<div>
+		Search Townie Name:
+		<input ng-model="searchBox.name" type="text" placeholder="Enter a Name">
+	</div>
+	<div>
+		Search By City:
+		<input ng-model="searchBox.city" type="text" placeholder="Enter a City">
+	</div>
+	<div>
+		Search By State:
+		<select
+			ng-options= "state for state in ctrl.allStatesList()"
+			ng-model="searchBox.state">
+			<option ng-click="ctrl.getTownies()" value=""> Choose State </option>
+		</select>
+	</div>
+	</div>
+	<div class="bottom-container">
+		<table id="all-townies-table">
+			<tr>
+				<th>Townie Name</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Description</th>
+			</tr>
+			<tr
+				class="townie-table-row"
+				ng-repeat="companies in ctrl.companies | filter : searchBox"
+				ng-repeat= "state in ctrl.allStatesList() | filter: searchBox"
+				ng-click="ctrl.changeInclude('showtownie'); ctrl.companyToShow = companies; ctrl.showMap=true">
+				<td>{{companies.name}}</td>
+				<td>{{companies.city}}</td>
+				<td>{{companies.state}}</td>
+				<td>{{companies.description}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
