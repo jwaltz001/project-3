@@ -93,30 +93,6 @@ app.controller('AppController', ['$http', function($http){
         );
     };
 
-    // this.findTownie = function(){
-    //   $http({
-    //       method:'GET',
-    //       url:'/app'
-    //   }).then((res) => {
-    //     // init showForm to false;
-    //     this.findTownie = false;
-    //
-    //     // init empty user object for our form
-    //     $scope.user = {};
-    //
-    //     $scope.submitForm = function() {
-    //       // logic when the form is submitted
-    //       //...
-    //
-    //       // reset the user
-    //       $scope.user = {};
-    //
-    //       // finally hide the form
-    //       $scope.showForm = false;
-    //     };
-    //
-    //   }
-    // ]);
 	/************************************
 	 *     COMPANY/TOWNIE FUNCTIONS     *
 	 *                                  *
@@ -130,10 +106,6 @@ app.controller('AppController', ['$http', function($http){
 			this.includePath = 'partials/'+ path +'.html';
 		}
 
-	// this.includeNavPath = "";
-	// this.changeNavInclude= (path) => {
-	// 	this.includeNavPath = 'partials/partials/'+ path +'.html';
-	// }
 	this.createTownie = () => {
 		//console.log(this.name);
 		$http({
@@ -173,10 +145,7 @@ app.controller('AppController', ['$http', function($http){
 
 			})
 	}
-	//this.isEditEnabled = true;
-	//this.toggleEditTownieForm = () => {
-		//this.isEditEnabled = !this.isEditEnabled;
-	//}
+
 	this.editTownie = (company) => {
 		console.log("Edit Route 1 (id of company):", company._id);
 		$http({
@@ -222,14 +191,6 @@ app.controller('AppController', ['$http', function($http){
 	      this.isCompanySelected = true;
 	    }
 	  }
-
-
-  // this.reset = function () {
-  //   this.searchBox = {state: allStatesList()};
-  //   $('#searchBox\\.state').find('> option').each(function() {
-  //      $(this).removeAttr('selected');
-  //   });
-  // };
 
 	this.getTownies = () => {
 		$http({
