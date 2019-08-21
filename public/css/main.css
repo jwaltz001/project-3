@@ -1,6 +1,8 @@
 /* * {
 	border: solid red 1px;
 } */
+
+/* MODAL START */
 .modal {
 	display: none;
 	position: fixed;
@@ -32,24 +34,28 @@
 	flex-direction: column;
 	width: 35%;
 }
-
 .modal-body > h3 {
 	font-family: 'Luckiest Guy', cursive;
 	letter-spacing: 1px;
 	color: #40454d;
 }
-
 .modal-footer {
 	display:flex;
 	flex-direction: row-reverse;
 	padding: 1em 1em 0 1em;
 }
+/* MODAL END */
 h3:hover {
 	color: #40454d;
 }
 .townie-table-row:hover{
 	background-color: rgba(30, 60, 103, .5);
 	color: white;
+}
+
+#editModal {
+	height: 1000px;
+	overflow: scroll;
 }
 
 form > .submit {
@@ -198,39 +204,200 @@ nav > div > h3 {
 	height: 40px;
 }
 
+/* SHOW TOWNIE PARTIAL START */
+
+.left > div > h3:hover {
+	color: #72befc;
+}
+
+.left, .right{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.showcontainer {
+	padding-top: 10px;
+	display: flex;
+	flex-direction: row;
+	color: white;
+	justify-content: center;
+}
+.headingshow, .showdescription{
+	padding-top: 15px;
+	width: 100%;
+	color: white;
+	text-align: center;
+}
+.approval-div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* SHOW TOWNIE PARTIAL END */
+
+
+/* FIND TOWNIE PARTIAL START */
+.top-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding-top: 20px;
+}
+.top-container > div {
+	color: white;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	text-transform: uppercase;
+	display: flex;
+	flex-direction: column;
+}
+.top-container > div > input {
+	color: black;
+}
+.top-container > div > select {
+	color: black;
+}
+.main-container-find {
+	background-color: #40454d;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.bottom-container > table {
+	width: 90%;
+	color: white;
+	margin: 40px;
+}
+
+
+/* FIND TOWNIE PARTIAL END */
+
+/* ADD TOWNIE PARTIAL START */
+.main-container {
+	background-color: #40454d;
+	width: 100%;
+}
+
+.partialbody {
+	margin: 20px;
+}
+
+.partialbody > form {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.partialbody > legend {
+	color: white;
+	padding: 5px;
+}
+
+.partialbody > input {
+	margin: 5px;
+}
+
+#submitaddnew {
+	background-color: rgba(255, 255, 255, 1);
+	color: #72befc;
+}
+
+#submitaddnew:hover {
+	color: #40454d;
+}
+
+.main-container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.small-container {
+	width: 50%;
+}
+
+#right-container > img {
+	width: 100%;
+
+	filter: grayscale();
+}
+/* ADD TOWNIE PARTIAL END */
 
 body {
 	width: 100%;
 }
-
+.mapcontainer{
+	display: flex;
+	flex-flow: row;
+	width: 95%;
+}
 #main-townie-display{
 	background-color: #72befc;
 	background-position: center;
 	background-size: cover;
 
 }
-/* #main-townie-display > * {
-	background-color: rgba(255, 255, 255, .5);
-} */
 
-/* #map-search-panel{
-	background-color: rgba(255, 255, 255, .5);
-} */
+#map-search-panel{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
 
+#map-search-panel > b {
+	padding-top: 10px;
+	color: white;
+}
+#map-search-panel > input {
+	margin: 0 10px;
+}
+.user-reviews {
+	overflow: scroll;
+	height: 30em;
+	background: white;
+}
+article{
+	border-top: 1pt solid black;
+	border-bottom: 1pt solid black;
+	padding: .5em;
+}
+.reviewtext{
+	color: white;
+}
+.partialbody > form > div {
+	display: flex;
+	flex-direction: column;
+}
+.review-inputs-2 {
+	width: 100%;
+}
+.tallimg {
+	height: 100%;
+	width:auto;
+}
+#back-btn {
+	background: rgba(255, 255, 255, 1);
+	margin: .5em
+}
+.white-btn{
+	background: rgba(255, 255, 255, 1);
+}
 /***************
  * Map Styling *
  *             *
  ***************/
 #map-directions-display {
-	display: flex;
 	flex-flow: column;
 	align-items: center;
+	justify-content: center;
 	display: none;
 }
 
 #map {
 	height: 500px;
-	width: 750px;
+	min-width: 60%;
 }
 
 #right-panel {
@@ -238,7 +405,7 @@ body {
 	line-height: 30px;
 	padding: 10px;
 	height: 100%;
-	width: 390px;
+	min-width: 40%;
 	overflow: auto;
 	background-color: rgba(255, 255, 255, .5);
 }
@@ -254,24 +421,28 @@ body {
 #right-panel i {
 	font-size: 12px;
 }
-
+#directions-btn, #close-map-btn{
+	background-color: rgba(255,255,255,1);
+}
 /***************
  *  Like Btn   *
- *             *
  ***************/
 /* Used: https://css-tricks.com/the-shapes-of-css/ */
 .approval-div {
 	display: flex;
-	align-items: flex-end;
+	/* align-items: flex-end; */
 	margin-bottom: 2em;
 	margin-left: 2em;
 }
-.approval-div > h5, p {
-	margin: 0 2em;
+.approval-div > p {
+	margin: 2em;
+}
+.approval-div > h5 {
+	margin: 10px ;
 }
 .approve-ribbon {
       position: relative;
-      background: rgba(52, 60, 66);
+      background: rgba(255, 255, 255);
       height: 50px;
       width: 50px;
       border-radius: 25px;
@@ -280,7 +451,7 @@ body {
 .approve-ribbon:after {
       content: '';
       position: absolute;
-      border-bottom: 35px solid rgba(52, 60, 66);
+      border-bottom: 35px solid rgba(255, 255, 255);
       border-left: 20px solid transparent;
       border-right: 20px solid transparent;
       top: 35px;

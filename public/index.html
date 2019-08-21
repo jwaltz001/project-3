@@ -3,11 +3,12 @@
     <head>
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"></script>
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap" rel="stylesheet">
+		<script src="app.js" charset="utf-8"></script>
+		<script src="map.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-		<script src="app.js" charset="utf-8"></script>
 		<link rel="stylesheet" href="/css/normalize.css">
 		<link rel="stylesheet" href="/css/skeleton.css">
 		<link rel="stylesheet" href="/css/main.css">
@@ -80,14 +81,12 @@
                  </div>
              </div>
          </div>
-
-
         <!-- AFTER LOGIN -->
 		    <div id="main-townie-display" ng-show="ctrl.loggedInUsername">
           <div class="mainbtns">
-                  <button type="button" ng-style="find" ng-click="ctrl.changeInclude('findtownie'); ctrl.findatownie = true; find={'color':'white','border':'white 1px solid'}; add={'color':'#40454d','border':'#40454d 1px solid'}" name="button">Find A Townie</button>
+                  <button type="button" ng-style="find" ng-click="ctrl.changeInclude('findtownie'); ctrl.findatownie = true; find={'color':'white','border':'white 1px solid'}; add={'color':'#40454d','border':'#40454d 1px solid'}; ctrl.showMap = false" name="button">Find A Townie</button>
 
-                      <button type="button" ng-style="add" ng-click="ctrl.changeInclude('addtownie'); ctrl.findatownie = false; add={'color':'white','border':'white 1px solid'}; find={'color':'#40454d','border':'#40454d 1px solid'}" name="button">Create A Townie</button>
+                    <button type="button" ng-style="add" ng-click="ctrl.changeInclude('addtownie'); ctrl.findatownie = false; add={'color':'white','border':'white 1px solid'}; find={'color':'#40454d','border':'#40454d 1px solid'}; ctrl.showMap = false" name="button">Create A Townie</button>
             </div>
 	        	<!-- <div ng-hide="ctrl.isCompanySelected"> -->
 					<!-- <h4>Know a Townie you Trust?</h4> -->
@@ -95,24 +94,24 @@
 
 					</div>
 
-	        <div ng-show="ctrl.companyToShow">
+	        <div class="container" ng-show="ctrl.showMap">
             <div id="map-search-panel">
             <b> Your Address: </b>
             <input type="text" id="start" value="{{ctrl.companyToShow.city}}">
             <input type="hidden" id="end" value="{{ctrl.companyToShow.streetAddress + ctrl.companyToShow.city + ctrl.companyToShow.state}}">
-            <button id="directions-btn" type="button" name="button">Get Directions</button>
+            <button id="directions-btn">Get Directions</button>
             </div>
             <div id="map-directions-display">
-            <div id="map"></div>
-            <div id="right-panel"></div>
-            <button id="close-map-btn">Close Map</button>
+				<div class="mapcontainer">
+					<div id="map"></div>
+					<div id="right-panel"></div>
+				</div>
+	            <button id="close-map-btn">Close Map</button>
             </div>
-
-		  		</div>
+		  	</div>
 
 			</div>
         </div>
-
 		<div class="footer">
 	        &copy; Copyright 2019 All Rights Reserved
 	    </div>
@@ -155,7 +154,8 @@
   }
   document.getElementById('directions-btn').addEventListener('click', initMap);
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew" async defer></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew" async defer></script> -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-99aWDom_qs9Pfq5tS3ay3nBIa4kHyew&libraries=places"></script>
 
 	</body>
 </html>
