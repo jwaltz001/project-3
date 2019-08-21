@@ -1,9 +1,10 @@
 
-<div class="showcontainer container">
-    <div class="left">
-        <div>
-            <h3 class="headingsshow">{{ctrl.companyToShow.name}}</h3>
-        </div>
+<div class="container">
+	<h3 class="headingshow">{{ctrl.companyToShow.name}}</h3>
+	<p class="showdescription"><b>{{ctrl.companyToShow.description}}</b></p>
+	<div class="showcontainer">
+	<div class="left">
+
         <div class="approval-div">
             <div class="selected-approve-ribbon"></div>
             <p>This Townie has {{ctrl.companyToShow.endorsements}} seals of approval from our users.</p>
@@ -26,8 +27,9 @@
 				ng-mouseleave="ctrl.approveRibbonHover()">
 			</div>
         </div>
-        <button class="white-btn" ng-click="ctrl.changeInclude('writeReview'); ctrl.showMap = false" >Write Review</button>
+        <button class="white-btn" ng-click="ctrl.changeInclude('writeReview'); ctrl.showMap = false" >See Reviews</button>
     </div>
+	</div>
 </div>
 <!-- MODAL -->
 <div

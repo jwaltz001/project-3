@@ -221,8 +221,14 @@ nav > div > h3 {
 	display: flex;
 	flex-direction: row;
 	color: white;
+	justify-content: center;
 }
-
+.headingshow, .showdescription{
+	padding-top: 15px;
+	width: 100%;
+	color: white;
+	text-align: center;
+}
 .approval-div {
 	display: flex;
 	flex-direction: column;
@@ -322,7 +328,11 @@ nav > div > h3 {
 body {
 	width: 100%;
 }
-
+.mapcontainer{
+	display: flex;
+	flex-flow: row;
+	width: 95%;
+}
 #main-townie-display{
 	background-color: #72befc;
 	background-position: center;
@@ -387,7 +397,7 @@ article{
 
 #map {
 	height: 500px;
-	width: 750px;
+	min-width: 60%;
 }
 
 #right-panel {
@@ -395,7 +405,7 @@ article{
 	line-height: 30px;
 	padding: 10px;
 	height: 100%;
-	width: 390px;
+	min-width: 40%;
 	overflow: auto;
 	background-color: rgba(255, 255, 255, .5);
 }
