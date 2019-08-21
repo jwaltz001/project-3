@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"></script>
 		<script src="app.js" charset="utf-8"></script>
-		<script src="map.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
@@ -32,7 +31,7 @@
 				                </form>
                             </div>
                             <div class="modal-footer">
-							<button ng-click="login={}" class="close">X</button>
+								<button ng-click="login={}" class="close">X</button>
 							</div>
                         </div>
                     </div>
@@ -65,51 +64,46 @@
 	                <h1 class="text-focus-in">Trusty Townies</h1>
 	                <!-- <img src="../images/icons8-maintenance-60.png" alt=""> -->
 	            </div>
-              <div class="mainimg"></div>
-             <div class="mainboxes" ng-hide="ctrl.loggedInUsername">
-                 <div class="box1">
-                     <h1>FIND A <br>TOWNIE</h1>
-                     <p>Need help? Find a local near you to do the job! Search through hundreds of locals in your area that specialize in what you need.</p>
-                 </div>
-                 <div class="box2" >
-                     <h1>ADD A<br>TOWNIE</h1>
-                     <p>Add new locals to the list to tell others about. Add your favorite local helpers to promote their business and get your neighbors the help they need!</p>
-                 </div>
-                 <div class="box3">
-                     <h1>CREATE <br> REVIEWS</h1>
-                     <p>With Trusty townies, you can endorse your favorite businnesses, and help others sort through to the most recommended one. Trusty Townies makes it easy to find the best quality business for the job you need!</p>
-                 </div>
-             </div>
-         </div>
-        <!-- AFTER LOGIN -->
-		    <div id="main-townie-display" ng-show="ctrl.loggedInUsername">
-          <div class="mainbtns">
-                  <button type="button" ng-style="find" ng-click="ctrl.changeInclude('findtownie'); ctrl.findatownie = true; find={'color':'white','border':'white 1px solid'}; add={'color':'#40454d','border':'#40454d 1px solid'}; ctrl.showMap = false" name="button">Find A Townie</button>
-
-                    <button type="button" ng-style="add" ng-click="ctrl.changeInclude('addtownie'); ctrl.findatownie = false; add={'color':'white','border':'white 1px solid'}; find={'color':'#40454d','border':'#40454d 1px solid'}; ctrl.showMap = false" name="button">Create A Townie</button>
-            </div>
-	        	<!-- <div ng-hide="ctrl.isCompanySelected"> -->
-					<!-- <h4>Know a Townie you Trust?</h4> -->
-					<div ng-include="ctrl.includePath">
-
-					</div>
-
-	        <div class="container" ng-show="ctrl.showMap">
-            <div id="map-search-panel">
-            <b> Your Address: </b>
-            <input type="text" id="start" value="{{ctrl.companyToShow.city}}">
-            <input type="hidden" id="end" value="{{ctrl.companyToShow.streetAddress + ctrl.companyToShow.city + ctrl.companyToShow.state}}">
-            <button id="directions-btn">Get Directions</button>
-            </div>
-            <div id="map-directions-display">
-				<div class="mapcontainer">
-					<div id="map"></div>
-					<div id="right-panel"></div>
+            	<div class="mainimg"></div>
+             	<div class="mainboxes" ng-hide="ctrl.loggedInUsername">
+	                <div class="box1">
+	                    <h1>FIND A <br>TOWNIE</h1>
+	                    <p>Need help? Find a local near you to do the job! Search through hundreds of locals in your area that specialize in what you need.</p>
+	                </div>
+	                <div class="box2" >
+	                    <h1>ADD A<br>TOWNIE</h1>
+	                    <p>Add new locals to the list to tell others about. Add your favorite local helpers to promote their business and get your neighbors the help they need!</p>
+	                </div>
+	                <div class="box3">
+	                    <h1>CREATE <br> REVIEWS</h1>
+	                    <p>With Trusty townies, you can endorse your favorite businnesses, and help others sort through to the most recommended one. Trusty Townies makes it easy to find the best quality business for the job you need!</p>
+	                </div>
+            	</div>
+	        </div>
+	        <!-- AFTER LOGIN -->
+			<div id="main-townie-display" ng-show="ctrl.loggedInUsername">
+	            <div class="mainbtns">
+	                <button type="button" ng-style="find" ng-click="ctrl.changeInclude('findtownie'); ctrl.findatownie = true; find={'color':'white','border':'white 1px solid'}; add={'color':'#40454d','border':'#40454d 1px solid'}; ctrl.showMap = false" name="button">Find A Townie</button>
+	                <button type="button" ng-style="add" ng-click="ctrl.changeInclude('addtownie'); ctrl.findatownie = false; add={'color':'white','border':'white 1px solid'}; find={'color':'#40454d','border':'#40454d 1px solid'}; ctrl.showMap = false" name="button">Create A Townie</button>
+	            </div>
+			<!-- Main Display: Includes -->
+				<div ng-include="ctrl.includePath">
 				</div>
-	            <button id="close-map-btn">Close Map</button>
-            </div>
-		  	</div>
-
+		        <div class="container" ng-show="ctrl.showMap">
+		            <div id="map-search-panel">
+			            <b> Your Address: </b>
+			            <input type="text" id="start" value="{{ctrl.companyToShow.city}}">
+			            <input type="hidden" id="end" value="{{ctrl.companyToShow.streetAddress + ctrl.companyToShow.city + ctrl.companyToShow.state}}">
+			            <button id="directions-btn">Get Directions</button>
+		            </div>
+		            <div id="map-directions-display">
+						<div class="mapcontainer">
+							<div id="map"></div>
+							<div id="right-panel"></div>
+						</div>
+			            <button id="close-map-btn">Close Map</button>
+		            </div>
+				</div>
 			</div>
         </div>
 		<div class="footer">

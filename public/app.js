@@ -1,19 +1,9 @@
 const app = angular.module('MyApp', []);
-// app.config(function($httpProvider) {
-//       //Enable cross domain calls
-//       $httpProvider.defaults.useXDomain = true;
-//       //Remove the header used to identify ajax call  that would prevent CORS from working
-//       delete $httpProvider.defaults.headers.common['X-Requested-With'];
-//   });
-// app.config(['$httpProvider', function($httpProvider) {
-//   $httpProvider.defaults.withCredentials = true;
-// }])
-
-
 
 app.controller('AppController', ['$http', function($http){
     const controller = this;
 	this.date = new Date().getTime();
+
 	/********************************
 	 * AUTHORIZATION/NAV FUNCTIONS  *
 	 *                              *
@@ -185,7 +175,7 @@ app.controller('AppController', ['$http', function($http){
 	  })
 	}
 
-	  this.back = () => {
+	this.back = () => {
 	    this.isCompanySelected = false;
 	    this.back = function () {
 	      this.isCompanySelected = true;
@@ -215,22 +205,23 @@ app.controller('AppController', ['$http', function($http){
 			}
 		});
 	}
-	//need to stop same user from approving multiple times
+
 	this.isApproved = false;
 	this.approveRibbonHover = () => {
 		this.isApprovedHover = !this.isApprovedHover;
 	}
+
 	this.approveRibbonSelect = (company) => {
 		this.isApproved = true;
 		$http({
 			method: "PATCH",
 			url: "/business/approve/" + company._id
-
 		}).then((res) => {
 			//console.log("endorsements", res.data);
 			this.companyToShow = res.data;
 		})
 	}
+
 	this.publishNewReview = (companyToShowId) => {
 		console.log("review route 1 (company id):", companyToShowId);
 		console.log("review route 1 (company id):", companyToShowId);
@@ -263,5 +254,4 @@ app.controller('AppController', ['$http', function($http){
 	}
 	this.getTownies();
 	this.goApp();
- 	//console.log("Edit enabled on page load:", this.isEditEnabled);
 }]);
