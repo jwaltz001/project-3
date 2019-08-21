@@ -149,6 +149,7 @@ nav > div > h3 {
 	display: flex;
 	flex-direction: column;
 	margin: 10px;
+	width: 33%;
 }
 
 .mainboxes > div > h1 {
