@@ -53,6 +53,11 @@ h3:hover {
 	color: white;
 }
 
+#editModal {
+	height: 1000px;
+	overflow: scroll;
+}
+
 form > .submit {
 	background-color: #72befc;
 	color: white;
@@ -199,6 +204,34 @@ nav > div > h3 {
 	height: 40px;
 }
 
+/* SHOW TOWNIE PARTIAL START */
+
+.left > div > h3:hover {
+	color: #72befc;
+}
+
+.left, .right{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.showcontainer {
+	padding-top: 10px;
+	display: flex;
+	flex-direction: row;
+	color: white;
+}
+
+.approval-div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* SHOW TOWNIE PARTIAL END */
+
+
 /* FIND TOWNIE PARTIAL START */
 .top-container {
 	display: flex;
@@ -296,13 +329,20 @@ body {
 	background-size: cover;
 
 }
-/* #main-townie-display > * {
-	background-color: rgba(255, 255, 255, .5);
-} */
 
-/* #map-search-panel{
-	background-color: rgba(255, 255, 255, .5);
-} */
+#map-search-panel{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+#map-search-panel > b {
+	padding-top: 10px;
+	color: white;
+}
+#map-search-panel > input {
+	margin: 0 10px;
+}
 .user-reviews {
 	overflow: scroll;
 	height: 30em;
@@ -331,14 +371,17 @@ article{
 	background: rgba(255, 255, 255, 1);
 	margin: .5em
 }
+.white-btn{
+	background: rgba(255, 255, 255, 1);
+}
 /***************
  * Map Styling *
  *             *
  ***************/
 #map-directions-display {
-	display: flex;
 	flex-flow: column;
 	align-items: center;
+	justify-content: center;
 	display: none;
 }
 
@@ -368,24 +411,28 @@ article{
 #right-panel i {
 	font-size: 12px;
 }
-
+#directions-btn, #close-map-btn{
+	background-color: rgba(255,255,255,1);
+}
 /***************
  *  Like Btn   *
- *             *
  ***************/
 /* Used: https://css-tricks.com/the-shapes-of-css/ */
 .approval-div {
 	display: flex;
-	align-items: flex-end;
+	/* align-items: flex-end; */
 	margin-bottom: 2em;
 	margin-left: 2em;
 }
-.approval-div > h5, p {
-	margin: 0 2em;
+.approval-div > p {
+	margin: 2em;
+}
+.approval-div > h5 {
+	margin: 10px ;
 }
 .approve-ribbon {
       position: relative;
-      background: rgba(52, 60, 66);
+      background: rgba(255, 255, 255);
       height: 50px;
       width: 50px;
       border-radius: 25px;
@@ -394,7 +441,7 @@ article{
 .approve-ribbon:after {
       content: '';
       position: absolute;
-      border-bottom: 35px solid rgba(52, 60, 66);
+      border-bottom: 35px solid rgba(255, 255, 255);
       border-left: 20px solid transparent;
       border-right: 20px solid transparent;
       top: 35px;
