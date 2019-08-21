@@ -319,7 +319,6 @@ article{
 .partialbody > form > div {
 	display: flex;
 	flex-direction: column;
-
 }
 .review-inputs-2 {
 	width: 100%;
